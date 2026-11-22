@@ -67,6 +67,10 @@ main>section.col>*:not(h2){display:none!important}
 .cloze li{margin:10px 0;line-height:1.9}
 .cl{font-style:normal;font-weight:700;color:var(--pri);background:var(--pri2);border-radius:6px;padding:0 6px;filter:blur(7px);cursor:pointer;transition:filter .2s}
 .cl.rev{filter:none}
+.vid .vf{position:relative;aspect-ratio:16/9;background:#000;border-radius:10px;overflow:hidden;cursor:pointer;margin-bottom:8px}
+.vid .vf img,.vid .vf iframe{width:100%;height:100%;object-fit:cover;border:0;display:block}
+.vid .pl{position:absolute;inset:0;margin:auto;width:64px;height:64px;border-radius:50%;background:#e8590ccc;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.8rem;padding-left:5px}
+.vid .vf:hover .pl{background:#e8590c}
 .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tw table{min-width:520px}
 .bar{padding-top:max(8px,env(safe-area-inset-top))}
@@ -180,6 +184,7 @@ footer{text-align:center;color:var(--mut);padding:24px 12px 60px;font-size:.9rem
 <a href="#top10">Top 10</a>
 <a href="#laburpena"><span lang="eu">Laburpena</span><span lang="es">Resumen</span></a>
 <a href="#historia"><span lang="eu">Historia</span><span lang="es">Historia</span></a>
+<a href="#bideoak"><span lang="eu">Bideoak</span><span lang="es">Vídeos</span></a>
 <a href="#pista"><span lang="eu">Pista</span><span lang="es">Pista</span></a>
 <a href="#familiak"><span lang="eu">4 familiak</span><span lang="es">4 familias</span></a>
 <a href="#teknika"><span lang="eu">Teknika</span><span lang="es">Técnica</span></a>
@@ -263,6 +268,18 @@ footer{text-align:center;color:var(--mut);padding:24px 12px 60px;font-size:.9rem
 </div>
 <div class="fun"><span lang="eu"><b>Fosbury Flop:</b> 1968 baino lehen atletek aurrez edo alboz jauzi egiten zuten. Gaur egun altuera-jauzilari guztiek bizkarrez egiten dute.</span><span lang="es"><b>Fosbury Flop:</b> antes de 1968 los atletas saltaban de frente o de lado. Hoy todos los saltadores de altura saltan de espalda.</span></div>
 <div class="fun"><span lang="eu"><b>Bolt:</b> 9,58 s = 44,72 km/h. Beste errekorrak: pertika-jauzian 6,26 m, luzera-jauzian 8,95 m.</span><span lang="es"><b>Bolt:</b> 9,58 s = 44,72 km/h. Otros récords: salto con pértiga 6,26 m, salto de longitud 8,95 m.</span></div>
+</section>
+
+<section id="bideoak">
+<h2><span lang="eu">Bideoak</span><span lang="es">Vídeos</span></h2>
+<p><span lang="eu">Sakatu irudia bideoa ikusteko (internet behar da).</span><span lang="es">Pulsa la imagen para ver el vídeo (hace falta internet).</span></p>
+<div class="grid">
+<div class="vid card"><div class="vf" data-v="9SlVLyNixqU" role="button" tabindex="0" aria-label="Dick Fosbury Mexiko 1968"><img src="https://i.ytimg.com/vi/9SlVLyNixqU/hqdefault.jpg" alt="" loading="lazy"><span class="pl">▶</span></div><b class="t"><span lang="eu">Dick Fosbury Mexiko 1968</span><span lang="es">Dick Fosbury México 1968</span></b><span lang="eu">Fosbury Flop: bizkarrez jauzi egin eta urrea irabazi zuen (PDFeko bideoa).</span><span lang="es">Fosbury Flop: saltó de espaldas y ganó el oro (el vídeo del PDF).</span> <a href="https://www.youtube.com/watch?v=9SlVLyNixqU" target="_blank" rel="noopener">YouTube ↗</a></div>
+<div class="vid card"><div class="vf" data-v="l76Z6sklsVY" role="button" tabindex="0" aria-label="Lehen nola jauzi egiten zuten (eboluzioa)"><img src="https://i.ytimg.com/vi/l76Z6sklsVY/hqdefault.jpg" alt="" loading="lazy"><span class="pl">▶</span></div><b class="t"><span lang="eu">Lehen nola jauzi egiten zuten (eboluzioa)</span><span lang="es">Cómo se saltaba antes (evolución)</span></b><span lang="eu">Aurrez edo alboz: artezkak, alboko jauzia... eta Fosbury Flop-a, 1:55.</span><span lang="es">De frente o de lado: tijeras, estilo ventral... y el Fosbury Flop, 1:55.</span> <a href="https://www.youtube.com/watch?v=l76Z6sklsVY" target="_blank" rel="noopener">YouTube ↗</a></div>
+<div class="vid card"><div class="vf" data-v="-c8IMvFtioE" role="button" tabindex="0" aria-label="Amsterdam 1928: jauzi zaharra"><img src="https://i.ytimg.com/vi/-c8IMvFtioE/hqdefault.jpg" alt="" loading="lazy"><span class="pl">▶</span></div><b class="t"><span lang="eu">Amsterdam 1928: jauzi zaharra</span><span lang="es">Ámsterdam 1928: salto antiguo</span></b><span lang="eu">Olinpiar Jokoetako bideo zaharra, 0:41. Fosbury baino 40 urte lehenago.</span><span lang="es">Vídeo antiguo de los Juegos, 0:41. 40 años antes de Fosbury.</span> <a href="https://www.youtube.com/watch?v=-c8IMvFtioE" target="_blank" rel="noopener">YouTube ↗</a></div>
+<div class="vid card"><div class="vf" data-v="3nbjhpcZ9_g" role="button" tabindex="0" aria-label="Usain Bolt 9,58 s Berlin 2009"><img src="https://i.ytimg.com/vi/3nbjhpcZ9_g/hqdefault.jpg" alt="" loading="lazy"><span class="pl">▶</span></div><b class="t"><span lang="eu">Usain Bolt 9,58 s Berlin 2009</span><span lang="es">Usain Bolt 9,58 s Berlín 2009</span></b><span lang="eu">100 m-ko munduko errekorra (PDFeko bideoa).</span><span lang="es">Récord mundial de 100 m (el vídeo del PDF).</span> <a href="https://www.youtube.com/watch?v=3nbjhpcZ9_g" target="_blank" rel="noopener">YouTube ↗</a></div>
+</div>
+<div class="fun"><span lang="eu"><b>Altuera-jauziaren eboluzioa:</b> lehen aurrez edo alboz egiten zen jauzi (PDFean horrela). Gero, 1968an, Fosburyk bizkarrez egin zuen eta gaur egun denek horrela egiten dute. Bideoan ikusiko duzu aldea.</span><span lang="es"><b>Evolución del salto de altura:</b> antes se saltaba de frente o de lado (así lo dice el PDF). Luego, en 1968, Fosbury saltó de espaldas y hoy todos lo hacen así. En el vídeo verás la diferencia.</span></div>
 </section>
 
 <section id="pista">
@@ -424,7 +441,7 @@ footer{text-align:center;color:var(--mut);padding:24px 12px 60px;font-size:.9rem
 <tr><td><span lang="eu">Xabalina</span><span lang="es">Jabalina</span></td><td><span lang="eu">korrika egin eta bota, 1984</span><span lang="es">carrera y lanzar, 1984</span></td></tr>
 <tr><td><span lang="eu">Mailua</span><span lang="es">Martillo</span></td><td><span lang="eu">kablea, kaiola</span><span lang="es">cable, jaula</span></td></tr>
 </table>
-<div class="fun"><span lang="eu"><b>Bideoak:</b> <a href="https://www.youtube.com/results?search_query=Dick+Fosbury+Mexico+1968" target="_blank" rel="noopener">Dick Fosbury Mexiko 1968</a> · <a href="https://www.youtube.com/results?search_query=Usain+Bolt+9.58+Berlin+2009" target="_blank" rel="noopener">Usain Bolt 9,58 s Berlin 2009</a></span><span lang="es"><b>Vídeos:</b> <a href="https://www.youtube.com/results?search_query=Dick+Fosbury+Mexico+1968" target="_blank" rel="noopener">Dick Fosbury México 1968</a> · <a href="https://www.youtube.com/results?search_query=Usain+Bolt+9.58+Berlin+2009" target="_blank" rel="noopener">Usain Bolt 9,58 s Berlín 2009</a></span></div>
+<div class="fun"><span lang="eu"><b>Bideoak:</b> ikusi "Bideoak" atalean.</span><span lang="es"><b>Vídeos:</b> míralos en la sección "Vídeos".</span></div>
 </section>
 
 <section id="zenbakiak">
@@ -785,7 +802,7 @@ $("#vtest").onclick=async()=>{
  setTimeout(()=>{const u=new SpeechSynthesisUtterance(l==="eu"?"Kaixo! Atletismoa ikasten ari gara.":"¡Hola! Estamos estudiando atletismo.");u.voice=v;u.lang=v.lang;SS.speak(u)},150);
 };
 document.querySelectorAll("section h2").forEach(h=>{
- const s=h.parentElement;if(s.id==="txartelak"||s.id==="galderak"||s.id==="hutsuneak")return;
+ const s=h.parentElement;if(s.id==="txartelak"||s.id==="galderak"||s.id==="hutsuneak"||s.id==="bideoak")return;
  const b=document.createElement("button");b.className="spk";b.innerHTML="🔊 <span lang=\"eu\">Entzun</span><span lang=\"es\">Escuchar</span>";
  b.onclick=()=>say(s,["s-"+s.id]);h.after(b);
 });
@@ -802,7 +819,7 @@ const J={get(k,d){try{return JSON.parse(LS.get(k))||d}catch(e){return d}},set(k,
 const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 const ordr=x=>x.o.length>2?shuf([...x.o.keys()]):[...x.o.keys()];
 let score=0,done=0,cur=[];
-function upd(){$("#score").textContent=`${score} / ${cur.length}  (${done}/${cur.length})`+(done===cur.length&&cur.length?"  "+Math.round(100*score/cur.length)+"%":"")}
+function upd(){$("#score").textContent=`${score} / ${cur.length}  (${done}/${cur.length})`+(done===cur.length&&cur.length?"  "+Math.round(100*score/cur.length)+"%  "+(score/cur.length>=.9?"🏆 Bikain! / ¡Genial!":score/cur.length>=.7?"👍 Oso ondo / Muy bien":"💪 Errepikatu / Repite"):"")}
 function build(list){
  cur=list||shuf(Q.map((_,i)=>i));score=0;done=0;
  $("#quiz").innerHTML=cur.map((qi,n)=>{const x=Q[qi];return `<div class="q" data-i="${qi}"><button class="spk" data-say="q">🔊</button><p>${n+1}. ${two(x.q)}</p>${ordr(x).map(j=>`<button class="opt" data-j="${j}">${two(tx(x.o[j]))}</button>`).join("")}<div class="why"></div></div>`}).join("");
@@ -951,6 +968,8 @@ $("#clmix").onclick=()=>drawCl(shuf(allCl()));
 $("#cl10").onclick=()=>drawCl(shuf(allCl()).slice(0,10));
 $("#rnd10").onclick=()=>build(shuf(Q.map((_,i)=>i)).slice(0,10));
 $("#rnd20").onclick=()=>build(shuf(Q.map((_,i)=>i)).slice(0,20));
+document.addEventListener("click",e=>{const v=e.target.closest(".vf[data-v]");if(!v||v.querySelector("iframe"))return;stopSpeech();const id=v.dataset.v;v.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="video"></iframe>'});
+document.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches&&e.target.matches(".vf[data-v]")){e.preventDefault();e.target.click()}});
 $("#hidebtn").onclick=function(){$("#numtab").classList.toggle("hide");this.classList.toggle("on")};
 $("#numtab").addEventListener("click",e=>{const td=e.target.closest("td");if(td)td.classList.toggle("rev")});
 $("#listenall").onclick=()=>{const w=document.createElement("div");["#laburpena","#historia","#pista","#familiak","#eskemak","#teknika","#araudia"].forEach(id=>w.append(document.querySelector(id).cloneNode(true)));say(w,["laburpena","historia","pista","familiak","eskemak","teknika","araudia"].map(x=>"s-"+x))};
