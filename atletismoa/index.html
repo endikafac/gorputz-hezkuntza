@@ -105,7 +105,7 @@ footer{text-align:center;color:var(--mut);padding:24px 12px 60px;font-size:.9rem
 <a href="#txartelak"><span lang="eu">Txartelak</span><span lang="es">Tarjetas</span></a>
 <a href="#galderak"><span lang="eu">Galderak</span><span lang="es">Preguntas</span></a>
 </nav>
-<button class="spk" id="stop" style="margin:0">⏹ Stop</button>
+<button class="spk" id="stop" style="margin:0">⏹ Stop</button><button class="spk" id="vtest" style="margin:0">🔊 Test</button>
 <div class="lang"><button data-l="eu" class="on">EU</button><button data-l="both">EU+ES</button><button data-l="es">ES</button></div>
 </div>
 <main>
@@ -483,6 +483,16 @@ async function say(el){
  },150);
 }
 $("#stop").onclick=stopSpeech;
+$("#vtest").onclick=async()=>{
+ if(!SS){alert("Zure nabigatzaileak ez du ahots-sintesirik / Tu navegador no tiene síntesis de voz");return}
+ SS.cancel();VOICES=await getVoicesNow();
+ const l=document.body.dataset.lang==="es"?"es":"eu";
+ const v=pick(l)||pick("es");
+ const n=$("#vnote");n.style.display="block";
+ n.textContent=`Ahotsak / Voces: ${VOICES.length} · eu: ${pick("eu")?pick("eu").name:"ez / no"} · es: ${pick("es")?pick("es").name:"ez / no"}`;
+ if(!v)return;
+ setTimeout(()=>{const u=new SpeechSynthesisUtterance(l==="eu"?"Kaixo! Atletismoa ikasten ari gara.":"¡Hola! Estamos estudiando atletismo.");u.voice=v;u.lang=v.lang;SS.speak(u)},150);
+};
 document.querySelectorAll("section h2").forEach(h=>{
  const s=h.parentElement;if(s.id==="txartelak"||s.id==="galderak")return;
  const b=document.createElement("button");b.className="spk";b.innerHTML="🔊 <span lang=\"eu\">Entzun</span><span lang=\"es\">Escuchar</span>";
