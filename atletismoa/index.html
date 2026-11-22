@@ -41,6 +41,13 @@ html{font-size:18px}
 .fc>div{min-height:150px!important}
 .fc.hidec{display:none}
 .fc{position:relative}
+main>section>h2{cursor:pointer;user-select:none}
+main>section>h2:after{content:" ▾";color:var(--pri)}
+main>section.col>h2:after{content:" ▸"}
+main>section.col>*:not(h2){display:none!important}
+.next{margin:18px 0 6px;text-align:center}
+.next button{background:var(--pri);color:#fff;border:0;border-radius:99px;padding:12px 26px;font:inherit;font-weight:700;cursor:pointer}
+@media print{main>section.col>*:not(h2){display:revert!important}}
 .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tw table{min-width:520px}
 .bar{padding-top:max(8px,env(safe-area-inset-top))}
@@ -467,7 +474,7 @@ function pick(l){
 }
 function textFor(el,l){
  const c=el.cloneNode(true);
- c.querySelectorAll("button.spk,script,style").forEach(n=>n.remove());
+ c.querySelectorAll("button.spk,.next,.tools,script,style").forEach(n=>n.remove());
  c.querySelectorAll("[lang]").forEach(n=>{if(n.lang!==l)n.remove()});
  c.querySelectorAll("td,th,li,p,div,h2,h3,br,tr").forEach(n=>n.append(document.createTextNode(". ")));
  return c.textContent.replace(/\s+/g," ").replace(/(\.\s*){2,}/g,". ").replace(/\bK\.a\./g,"K a").trim();
@@ -603,6 +610,19 @@ const plan=J.get("plan",[]);
 function pbar(){$("#pbar").style.width=(100*document.querySelectorAll(".plan input:checked").length/5)+"%"}
 document.querySelectorAll(".plan input").forEach(c=>{c.checked=plan.includes(c.dataset.p);c.onchange=()=>{J.set("plan",[...document.querySelectorAll(".plan input:checked")].map(x=>x.dataset.p));pbar()}});
 pbar();
+/* sections: open one by one */
+const SECS=[...document.querySelectorAll("main>section")];
+function openSec(s,scroll){SECS.forEach(x=>x.classList.toggle("col",x!==s));if(scroll)setTimeout(()=>{const y=s.getBoundingClientRect().top+scrollY-(document.querySelector(".bar").offsetHeight+8);scrollTo({top:y,behavior:"smooth"})},30)}
+SECS.forEach((s,i)=>{
+ s.querySelector("h2").onclick=()=>{s.classList.toggle("col")};
+ const nx=SECS[i+1],d=document.createElement("div");d.className="next";
+ d.innerHTML=nx?`<button><span lang="eu">Hurrengoa</span><span lang="es">Siguiente</span> ➜</button>`:`<button><span lang="eu">Hasierara</span><span lang="es">Al principio</span> ↑</button>`;
+ d.firstChild.onclick=()=>{stopSpeech();openSec(nx||SECS[0],true)};
+ s.append(d);
+});
+openSec(SECS[0],false);
+document.querySelectorAll(".bar nav a").forEach(a=>a.addEventListener("click",e=>{const t=document.querySelector(a.getAttribute("href"));if(t){e.preventDefault();openSec(t,true)}}));
+{const tl=document.querySelector("#plana .tools");const b=document.createElement("button");b.innerHTML='<span lang="eu">Ireki guztiak</span><span lang="es">Abrir todas</span>';b.onclick=()=>SECS.forEach(x=>x.classList.remove("col"));tl.append(b);const c=document.createElement("button");c.innerHTML='<span lang="eu">Itxi guztiak</span><span lang="es">Cerrar todas</span>';c.onclick=()=>SECS.forEach(x=>x.classList.add("col"));tl.append(c)}
 $("#hidebtn").onclick=function(){$("#numtab").classList.toggle("hide");this.classList.toggle("on")};
 $("#numtab").addEventListener("click",e=>{const td=e.target.closest("td");if(td)td.classList.toggle("rev")});
 $("#listenall").onclick=()=>{const w=document.createElement("div");["#laburpena","#historia","#pista","#familiak","#teknika","#araudia"].forEach(id=>w.append(document.querySelector(id).cloneNode(true)));say(w,["laburpena","historia","pista","familiak","teknika","araudia"].map(x=>"s-"+x))};
