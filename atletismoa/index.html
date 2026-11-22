@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="eu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atletismoa: ikasgida</title>
+<meta name="description" content="Atletismoa: Errespetua, Lana eta Esfortzua. Ikasgida / Guía de estudio.">
+<style>
+:root{--bg:#f6f8fb;--card:#fff;--ink:#17202e;--mut:#5a6678;--pri:#0d6e5b;--pri2:#e3f4ef;--acc:#e8590c;--acc2:#fff1e6;--line:#dde3ec;--ok:#1b8a3a;--ko:#c92a2a}
+@media (prefers-color-scheme:dark){:root{--bg:#10151d;--card:#18202b;--ink:#e8edf4;--mut:#9aa7b8;--pri:#3ecfae;--pri2:#16312c;--acc:#ff9a52;--acc2:#33241a;--line:#2a3544;--ok:#51cf66;--ko:#ff6b6b}}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.55 system-ui,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:var(--pri);color:#fff;padding:18px 16px}
+header h1{margin:0;font-size:1.5rem}
+header p{margin:4px 0 0;opacity:.9}
+.bar{position:sticky;top:0;z-index:10;background:var(--card);border-bottom:1px solid var(--line);display:flex;gap:6px;align-items:center;padding:8px 12px;flex-wrap:wrap}
+.bar nav{display:flex;gap:4px;flex-wrap:wrap;flex:1}
+.bar a{color:var(--ink);text-decoration:none;padding:4px 10px;border-radius:99px;font-size:.88rem;border:1px solid var(--line)}
+.bar a:hover{background:var(--pri2)}
+.lang button{border:1px solid var(--pri);background:transparent;color:var(--pri);padding:4px 12px;cursor:pointer;font-weight:700}
+.lang button:first-child{border-radius:99px 0 0 99px}.lang button:last-child{border-radius:0 99px 99px 0}
+.lang button.on{background:var(--pri);color:#fff}
+main{max-width:980px;margin:0 auto;padding:16px}
+</style><style>
+section{margin:28px 0}
+h2{font-size:1.35rem;margin:0 0 10px;border-left:6px solid var(--pri);padding-left:10px}
+h3{margin:14px 0 6px;font-size:1.05rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.card b.t{display:block;color:var(--pri);margin-bottom:2px}
+.fun{background:var(--acc2);border-left:5px solid var(--acc);border-radius:8px;padding:8px 12px;margin:10px 0}
+.key{background:var(--pri2);border-left:5px solid var(--pri);border-radius:8px;padding:8px 12px;margin:10px 0}
+table{border-collapse:collapse;width:100%;background:var(--card);border-radius:10px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left}
+th{background:var(--pri2)}
+.tl{border-left:3px solid var(--pri);margin-left:8px;padding-left:16px}
+.tl div{margin:0 0 12px;position:relative}
+.tl div:before{content:"";position:absolute;left:-23px;top:6px;width:11px;height:11px;border-radius:50%;background:var(--acc)}
+.tl strong{color:var(--acc)}
+body[data-lang=eu] [lang=es],body[data-lang=es] [lang=eu]{display:none}
+body[data-lang=both] [lang=es]{display:block;color:var(--mut);font-size:.92em;font-style:italic}
+body[data-lang=both] span[lang=es],body[data-lang=both] b[lang=es]{display:inline}
+body[data-lang=both] td [lang=es],body[data-lang=both] th [lang=es]{display:block}
+.fc{perspective:900px;cursor:pointer}
+.fc>div{position:relative;min-height:120px;transition:transform .5s;transform-style:preserve-3d}
+.fc.flip>div{transform:rotateY(180deg)}
+.fc .f,.fc .b{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;padding:12px;display:flex;align-items:center;justify-content:center;text-align:center;border:1px solid var(--line)}
+.fc .f{background:var(--card);font-weight:600}
+.fc .b{background:var(--pri);color:#fff;transform:rotateY(180deg)}
+.fc [lang]{display:block!important;font-style:normal!important;color:inherit!important;font-size:1em!important}
+body[data-lang=eu] .fc [lang=es],body[data-lang=es] .fc [lang=eu]{display:none!important}
+.q{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0}
+.q p{margin:0 0 8px;font-weight:600}
+.opt{display:block;width:100%;text-align:left;margin:5px 0;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--pri)}
+.opt.ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.ko{background:var(--ko);color:#fff;border-color:var(--ko)}
+.why{margin-top:6px;color:var(--mut);font-size:.92rem}
+#score{position:sticky;bottom:8px;background:var(--pri);color:#fff;padding:8px 14px;border-radius:99px;display:inline-block;font-weight:700}
+button.main{background:var(--pri);color:#fff;border:0;border-radius:8px;padding:8px 16px;font:inherit;cursor:pointer}
+.spk{border:1px solid var(--pri);background:var(--pri2);color:var(--pri);border-radius:99px;padding:2px 12px;font:inherit;font-size:.85rem;cursor:pointer;margin:0 0 8px}
+.spk:hover{background:var(--pri);color:#fff}
+.fc .spk{position:absolute;top:6px;right:6px;z-index:2;margin:0;background:#fff;color:#0d6e5b;padding:1px 8px}
+#vnote{display:none;background:var(--acc2);border-left:5px solid var(--acc);padding:8px 12px;margin:10px 0;border-radius:8px}
+footer{text-align:center;color:var(--mut);padding:24px 12px 60px;font-size:.9rem}
+@media print{.bar,#score,button{display:none!important}body{background:#fff}}
+</style>
+</head>
+<body data-lang="eu">
+<header>
+<h1>Atletismoa: Errespetua, Lana eta Esfortzua</h1>
+<p><span lang="eu">Salesianos Barakaldo · Gorputz Hezkuntza · Azterketarako ikasgida</span><span lang="es">Salesianos Barakaldo · Educación Física · Guía de estudio para el examen</span></p>
+</header>
+<div class="bar">
+<nav>
+<a href="#laburpena"><span lang="eu">Laburpena</span><span lang="es">Resumen</span></a>
+<a href="#historia"><span lang="eu">Historia</span><span lang="es">Historia</span></a>
+<a href="#pista"><span lang="eu">Pista</span><span lang="es">Pista</span></a>
+<a href="#familiak"><span lang="eu">4 familiak</span><span lang="es">4 familias</span></a>
+<a href="#teknika"><span lang="eu">Teknika</span><span lang="es">Técnica</span></a>
+<a href="#araudia"><span lang="eu">Araudia</span><span lang="es">Reglas</span></a>
+<a href="#zenbakiak"><span lang="eu">Zenbakiak</span><span lang="es">Números</span></a>
+<a href="#txartelak"><span lang="eu">Txartelak</span><span lang="es">Tarjetas</span></a>
+<a href="#galderak"><span lang="eu">Galderak</span><span lang="es">Preguntas</span></a>
+</nav>
+<button class="spk" id="stop" style="margin:0">⏹ Stop</button>
+<div class="lang"><button data-l="eu" class="on">EU</button><button data-l="both">EU+ES</button><button data-l="es">ES</button></div>
+</div>
+<main>
+<div id="vnote"><span lang="eu">Zure nabigatzaileak ez dauka euskarazko ahotsik. Erabili Microsoft Edge (ordenagailuan) edo Chrome Android-en, euskaraz entzuteko.</span><span lang="es">Tu navegador no tiene voz en euskera. Usa Microsoft Edge (en ordenador) o Chrome en Android para oírlo en euskera.</span></div>
+
+<section id="laburpena">
+<h2><span lang="eu">Laburpena: 1 minutuan</span><span lang="es">Resumen: en 1 minuto</span></h2>
+<div class="key">
+<div lang="eu"><b>Atletismoa = kirolen erregea.</b> 3 balio: <b>Errespetua</b> (arauak, aurkariak, epaileak), <b>Lana</b> (eguneroko entrenamendua), <b>Esfortzua</b> (mugak gainditzea). Olinpiar Jokoetan sortu zen (K.a. 776, Olinpia). 4 proba-familia: <b>lasterketak, jauziak, jaurtiketak, proba konbinatuak</b>. Pista: <b>400 m, 8 kale, ezkerraldera</b>. Maratoia: <b>42,195 km</b> (Londres 1908). Bolt: <b>9,58 s</b>. Fosbury: <b>bizkarrez, Mexiko 1968</b>.</div>
+<div lang="es"><b>Atletismo = rey de los deportes.</b> 3 valores: <b>Respeto</b> (normas, rivales, jueces), <b>Trabajo</b> (entrenamiento diario), <b>Esfuerzo</b> (superar los límites). Nació en los Juegos Olímpicos (776 a.C., Olimpia). 4 familias de pruebas: <b>carreras, saltos, lanzamientos, pruebas combinadas</b>. Pista: <b>400 m, 8 calles, giro a la izquierda</b>. Maratón: <b>42,195 km</b> (Londres 1908). Bolt: <b>9,58 s</b>. Fosbury: <b>de espaldas, México 1968</b>.</div>
+</div>
+
+<h3><span lang="eu">Kirolaren oinarrizko balioak</span><span lang="es">Valores básicos del deporte</span></h3>
+<div class="grid">
+<div class="card"><b class="t"><span lang="eu">Errespetua</span><span lang="es">Respeto</span></b><span lang="eu">Arauak, aurkariak eta epaileak beti errespetatzea.</span><span lang="es">Respetar siempre las normas, a los rivales y a los jueces.</span></div>
+<div class="card"><b class="t"><span lang="eu">Lana</span><span lang="es">Trabajo</span></b><span lang="eu">Teknika hobetzeko eguneroko entrenamendu konstantea.</span><span lang="es">Entrenamiento diario y constante para mejorar la técnica.</span></div>
+<div class="card"><b class="t"><span lang="eu">Esfortzua</span><span lang="es">Esfuerzo</span></b><span lang="eu">Norberaren mugak gainditzea azken metrora arte.</span><span lang="es">Superar los propios límites hasta el último metro.</span></div>
+</div>
+</section>
+
+<section id="historia">
+<h2><span lang="eu">Historia eta bitxikeriak</span><span lang="es">Historia y curiosidades</span></h2>
+<div class="tl">
+<div><strong>K.a. 776</strong> <span lang="eu">Lehen Olinpiar Jokoak, Olinpian (Grezia).</span><span lang="es">Primeros Juegos Olímpicos, en Olimpia (Grecia).</span></div>
+<div><strong><span lang="eu">Stadion</span><span lang="es">Stadion</span></strong> <span lang="eu">192 metroko lasterketa: lehen proba bakarra izan zen.</span><span lang="es">Carrera de 192 metros: fue la única prueba al principio.</span></div>
+<div><strong><span lang="eu">Pentatloi zaharra</span><span lang="es">Pentatlón antiguo</span></strong> <span lang="eu">Lasterketa, luzera, diskoa, xabalina eta borroka (5 proba).</span><span lang="es">Carrera, salto de longitud, disco, jabalina y lucha (5 pruebas).</span></div>
+<div><strong>K.a. 490</strong> <span lang="eu">Maratongo gudua: greziarrek pertsiarrak garaitu zituzten.</span><span lang="es">Batalla de Maratón: los griegos vencieron a los persas.</span></div>
+<div><strong>1896</strong> <span lang="eu">Atenas: Aro Modernoko lehen Olinpiar Jokoak.</span><span lang="es">Atenas: primeros Juegos Olímpicos de la Edad Moderna.</span></div>
+<div><strong>1908</strong> <span lang="eu">Londres: maratoia 42,195 km-koa da (2,195 km luzatu ziren).</span><span lang="es">Londres: el maratón pasa a medir 42,195 km (se alargó 2,195 km).</span></div>
+<div><strong>1968</strong> <span lang="eu">Mexiko: Dick Fosburyk bizkarrez jauzi egin eta urrea irabazi zuen.</span><span lang="es">México: Dick Fosbury saltó de espaldas y ganó el oro.</span></div>
+<div><strong>1984</strong> <span lang="eu">Xabalina aldatu zen, 104 metrotik gora hegan egiten zuelako.</span><span lang="es">Se cambió la jabalina porque volaba más de 104 metros.</span></div>
+<div><strong>2009</strong> <span lang="eu">Berlin: Usain Bolt, 100 m-tan 9,58 s (munduko errekorra).</span><span lang="es">Berlín: Usain Bolt, 9,58 s en 100 m (récord mundial).</span></div>
+</div>
+
+<h3><span lang="eu">Nola sortu zen maratoia? (3 urrats)</span><span lang="es">¿Cómo nació el maratón? (3 pasos)</span></h3>
+<div class="grid">
+<div class="card"><b class="t">1. <span lang="eu">Gudua (K.a. 490)</span><span lang="es">La batalla (490 a.C.)</span></b><span lang="eu">Greziarrek pertsiarrak garaitu zituzten Maraton hondartzan.</span><span lang="es">Los griegos vencieron a los persas en la playa de Maratón.</span></div>
+<div class="card"><b class="t">2. <span lang="eu">Mezularia: Filipides</span><span lang="es">El mensajero: Filípides</span></b><span lang="eu">40 km korrika egin zituen Atenasera iritsi eta "Irabazi dugu!" oihukatzeko.</span><span lang="es">Corrió 40 km hasta Atenas para gritar "¡Hemos ganado!".</span></div>
+<div class="card"><b class="t">3. <span lang="eu">Londres 1908: 42,195 km</span><span lang="es">Londres 1908: 42,195 km</span></b><span lang="eu">Errege-familiak gaztelutik irteera ikus zezan, 2,195 km luzatu zituzten.</span><span lang="es">Para que la familia real viera la salida desde el castillo, se alargó 2,195 km.</span></div>
+</div>
+<div class="fun"><span lang="eu"><b>Fosbury Flop:</b> 1968 baino lehen atletek aurrez edo alboz jauzi egiten zuten. Gaur egun altuera-jauzilari guztiek bizkarrez egiten dute.</span><span lang="es"><b>Fosbury Flop:</b> antes de 1968 los atletas saltaban de frente o de lado. Hoy todos los saltadores de altura saltan de espalda.</span></div>
+<div class="fun"><span lang="eu"><b>Bolt:</b> 9,58 s = 44,72 km/h. Beste errekorrak: pertika-jauzian 6,26 m, luzera-jauzian 8,95 m.</span><span lang="es"><b>Bolt:</b> 9,58 s = 44,72 km/h. Otros récords: salto con pértiga 6,26 m, salto de longitud 8,95 m.</span></div>
+</section>
+
+<section id="pista">
+<h2><span lang="eu">Estadioa eta pista</span><span lang="es">Estadio y pista</span></h2>
+<table>
+<tr><th><span lang="eu">Kontzeptua</span><span lang="es">Concepto</span></th><th><span lang="eu">Zer da?</span><span lang="es">¿Qué es?</span></th></tr>
+<tr><td>400 m</td><td><span lang="eu">Aire zabaleko pistaren bira osoaren luzera.</span><span lang="es">Longitud de una vuelta completa a la pista al aire libre.</span></td></tr>
+<tr><td><span lang="eu">8 kale (karril)</span><span lang="es">8 calles (carriles)</span></td><td><span lang="eu">Korrikalari bakoitzarentzako bide bereizia.</span><span lang="es">Un camino separado para cada corredor.</span></td></tr>
+<tr><td><span lang="eu">Erlojuaren aurka</span><span lang="es">Contra el reloj</span></td><td><span lang="eu">Beti ezkerraldera biratuz egiten da korrika.</span><span lang="es">Se corre siempre girando a la izquierda (sentido antihorario).</span></td></tr>
+<tr><td><span lang="eu">Erdigunea</span><span lang="es">Centro</span></td><td><span lang="eu">Belargunea: jauziak eta jaurtiketak egiteko.</span><span lang="es">Zona de césped: para saltos y lanzamientos.</span></td></tr>
+</table>
+</section>
+
+<section id="familiak">
+<h2><span lang="eu">Lau proba-familia handiak</span><span lang="es">Las 4 grandes familias de pruebas</span></h2>
+<div class="grid">
+<div class="card"><b class="t">1. <span lang="eu">Lasterketak</span><span lang="es">Carreras</span></b><span lang="eu">Abiadura, erresistentzia, hesiak eta erreleboak.</span><span lang="es">Velocidad, resistencia, vallas y relevos.</span></div>
+<div class="card"><b class="t">2. <span lang="eu">Jauziak</span><span lang="es">Saltos</span></b><span lang="eu">Luzera, jauzi hirukoitza, altuera eta pertika.</span><span lang="es">Longitud, triple salto, altura y pértiga.</span></div>
+<div class="card"><b class="t">3. <span lang="eu">Jaurtiketak</span><span lang="es">Lanzamientos</span></b><span lang="eu">Pisua, diskoa, xabalina eta mailua.</span><span lang="es">Peso, disco, jabalina y martillo.</span></div>
+<div class="card"><b class="t">4. <span lang="eu">Proba konbinatuak</span><span lang="es">Pruebas combinadas</span></b><span lang="eu">Dekatloia (10 proba) eta heptatloia (7 proba).</span><span lang="es">Decatlón (10 pruebas) y heptatlón (7 pruebas).</span></div>
+</div>
+
+<h3>1. <span lang="eu">Lasterketak</span><span lang="es">Carreras</span></h3>
+<table>
+<tr><th><span lang="eu">Mota</span><span lang="es">Tipo</span></th><th><span lang="eu">Probak</span><span lang="es">Pruebas</span></th><th><span lang="eu">Gakoa</span><span lang="es">Clave</span></th></tr>
+<tr><td><span lang="eu">Abiadura</span><span lang="es">Velocidad</span></td><td>100 m, 200 m, 400 m</td><td><span lang="eu">Irteera-takoak derrigorrezkoak.</span><span lang="es">Tacos de salida obligatorios.</span></td></tr>
+<tr><td><span lang="eu">Erdiko iraupena</span><span lang="es">Medio fondo</span></td><td>800 m, 1.500 m</td><td><span lang="eu">Abiadura eta erresistentzia uztartzen ditu.</span><span lang="es">Combina velocidad y resistencia.</span></td></tr>
+<tr><td><span lang="eu">Iraupena</span><span lang="es">Fondo</span></td><td>5.000 m, 10.000 m, <span lang="eu">maratoia</span><span lang="es">maratón</span></td><td><span lang="eu">Erritmoa eta buru-indarra.</span><span lang="es">Ritmo y fortaleza mental.</span></td></tr>
+<tr><td><span lang="eu">Ibilketa atletikoa</span><span lang="es">Marcha atlética</span></td><td>-</td><td><span lang="eu">Beti oin bat lurrean eduki behar da.</span><span lang="es">Siempre debe haber un pie en el suelo.</span></td></tr>
+<tr><td><span lang="eu">Hesiak</span><span lang="es">Vallas</span></td><td>-</td><td><span lang="eu">10 hesi gainditu behar dira. Hesia botatzeak ez dakar kanporaketarik (nahita ez bada).</span><span lang="es">Se superan 10 vallas. Tirar una valla no descalifica (salvo que sea a propósito).</span></td></tr>
+<tr><td><span lang="eu">Erreleboak</span><span lang="es">Relevos</span></td><td>4×100 m, 4×400 m</td><td><span lang="eu">Atletismoko talde-proba bakarrak. Lekukoa 30 m-ko eremuan pasatu behar da.</span><span lang="es">Únicas pruebas por equipos. El testigo se pasa en una zona de 30 m.</span></td></tr>
+</table>
+<div class="fun"><span lang="eu"><b>Bitxikeriak:</b> bi irteera faltsu egiten dituen korrikalaria kanporatua da. 4×100 m-an lekukoa begiratu gabe pasatzen da abiadura ez galtzeko.</span><span lang="es"><b>Curiosidades:</b> el corredor que hace dos salidas nulas queda eliminado. En el 4×100 m el testigo se pasa sin mirar para no perder velocidad.</span></div>
+
+<h3>2. <span lang="eu">Jauziak</span><span lang="es">Saltos</span></h3>
+<table>
+<tr><th><span lang="eu">Jauzia</span><span lang="es">Salto</span></th><th><span lang="eu">Zer egin behar da?</span><span lang="es">¿Qué hay que hacer?</span></th></tr>
+<tr><td><span lang="eu">Luzera-jauzia</span><span lang="es">Salto de longitud</span></td><td><span lang="eu">Taula zapaldu gabe, hondarrean ahalik eta urrunen erortzea. Hondarrean utzitako oinatzik hurbilena neurtzen da.</span><span lang="es">Caer lo más lejos posible en la arena sin pisar la tabla. Se mide la huella más cercana a la tabla.</span></td></tr>
+<tr><td><span lang="eu">Jauzi hirukoitza</span><span lang="es">Triple salto</span></td><td><span lang="eu">Hiru urrats kateatu (herrenka, pausoa, jauzia) hondarrera.</span><span lang="es">Tres saltos encadenados (cojito, zancada, salto) a la arena.</span></td></tr>
+<tr><td><span lang="eu">Altuera-jauzia</span><span lang="es">Salto de altura</span></td><td><span lang="eu">Listoia bota gabe gainditzea. 3 aukera altuera bakoitzean.</span><span lang="es">Superar el listón sin tirarlo. 3 intentos en cada altura.</span></td></tr>
+<tr><td><span lang="eu">Pertika-jauzia</span><span lang="es">Salto con pértiga</span></td><td><span lang="eu">Barra malgu baten laguntzaz 6 metrotik gora igotzea.</span><span lang="es">Subir más de 6 metros con ayuda de una barra flexible.</span></td></tr>
+</table>
+<div class="key"><span lang="eu">Horizontalak: luzera eta hirukoitza. Bertikalak: altuera eta pertika.</span><span lang="es">Horizontales: longitud y triple. Verticales: altura y pértiga.</span></div>
+
+<h3>3. <span lang="eu">Jaurtiketak</span><span lang="es">Lanzamientos</span></h3>
+<table>
+<tr><th><span lang="eu">Tresna</span><span lang="es">Instrumento</span></th><th><span lang="eu">Pisua (M/E)</span><span lang="es">Peso (M/F)</span></th><th><span lang="eu">Teknika</span><span lang="es">Técnica</span></th></tr>
+<tr><td><span lang="eu">Pisua</span><span lang="es">Peso</span></td><td>7,26 kg / 4 kg</td><td><span lang="eu">Lepotik bultzatu</span><span lang="es">Se empuja desde el hombro</span></td></tr>
+<tr><td><span lang="eu">Diskoa</span><span lang="es">Disco</span></td><td>2 kg / 1 kg</td><td><span lang="eu">Biraka kaiolan</span><span lang="es">Girando en la jaula</span></td></tr>
+<tr><td><span lang="eu">Xabalina</span><span lang="es">Jabalina</span></td><td>800 g / 600 g</td><td><span lang="eu">Korrika egin eta bota</span><span lang="es">Se corre y se lanza</span></td></tr>
+<tr><td><span lang="eu">Mailua</span><span lang="es">Martillo</span></td><td>7,26 kg / 4 kg</td><td><span lang="eu">Kablez biratu kaiolan</span><span lang="es">Se gira con un cable en la jaula</span></td></tr>
+</table>
+<div class="key"><span lang="eu"><b>Segurtasun-araua:</b> inoiz ez sartu erorketa-eremuan seinalea jaso arte!</span><span lang="es"><b>Norma de seguridad:</b> ¡nunca entrar en la zona de caída hasta recibir la señal!</span></div>
+
+<h3>4. <span lang="eu">Proba konbinatuak: bi eguneko erronka</span><span lang="es">Pruebas combinadas: reto de dos días</span></h3>
+<table>
+<tr><th></th><th><span lang="eu">Probak (ordenan)</span><span lang="es">Pruebas (en orden)</span></th></tr>
+<tr><td><span lang="eu"><b>Dekatloia</b> (gizonezkoak, 10)</span><span lang="es"><b>Decatlón</b> (hombres, 10)</span></td><td><span lang="eu">100 m, luzera, pisua, altuera, 400 m, 110 m hesiak, diskoa, pertika, xabalina, 1.500 m</span><span lang="es">100 m, longitud, peso, altura, 400 m, 110 m vallas, disco, pértiga, jabalina, 1.500 m</span></td></tr>
+<tr><td><span lang="eu"><b>Heptatloia</b> (emakumezkoak, 7)</span><span lang="es"><b>Heptatlón</b> (mujeres, 7)</span></td><td><span lang="eu">100 m hesiak, altuera, pisua, 200 m, luzera, xabalina, 800 m</span><span lang="es">100 m vallas, altura, peso, 200 m, longitud, jabalina, 800 m</span></td></tr>
+</table>
+<div class="fun"><span lang="eu">Irabazleari "Munduko Atleta Osoena" titulua ematen zaio!</span><span lang="es">¡Al ganador se le da el título de "Atleta más completo del mundo"!</span></div>
+</section>
+
+<section id="teknika">
+<h2><span lang="eu">Teknika: faseak</span><span lang="es">Técnica: las fases</span></h2>
+<h3><span lang="eu">Abiadura-lasterketa baten 4 faseak</span><span lang="es">Las 4 fases de una carrera de velocidad</span></h3>
+<div class="grid">
+<div class="card"><b class="t">1. <span lang="eu">Irteera</span><span lang="es">Salida</span></b><span lang="eu">"Prest, zuen lekuetara": tiroa entzutean takoetatik indarrez bultzatzea.</span><span lang="es">"A sus puestos, listos": al oír el disparo, empujar fuerte desde los tacos.</span></div>
+<div class="card"><b class="t">2. <span lang="eu">Azelerazioa</span><span lang="es">Aceleración</span></b><span lang="eu">Abiadura hartzea: gorputza pixkanaka altxatuz pausoak luzatzea.</span><span lang="es">Coger velocidad: ir levantando el cuerpo poco a poco y alargando los pasos.</span></div>
+<div class="card"><b class="t">3. <span lang="eu">Abiadura maximoa</span><span lang="es">Velocidad máxima</span></b><span lang="eu">Maiztasuna eta luzera: besoen mugimendu koordinatuaz abiadura mantentzea.</span><span lang="es">Frecuencia y amplitud: mantener la velocidad con el braceo coordinado.</span></div>
+<div class="card"><b class="t">4. <span lang="eu">Helmuga</span><span lang="es">Llegada</span></b><span lang="eu">Enborra aurreratzea: azken pausoan bularra aurreratzea denbora irabazteko.</span><span lang="es">Adelantar el tronco: inclinar el pecho en el último paso para ganar tiempo.</span></div>
+</div>
+<div class="grid" style="margin-top:12px">
+<div class="card"><b class="t"><span lang="eu">Jauzi baten 4 faseak</span><span lang="es">Las 4 fases de un salto</span></b>
+<span lang="eu">1. Lasterketa: abiadura kontrolatua hartzea.<br>2. Batida (bulkada): oin batez indarrez gora egitea.<br>3. Hegaldia: gorputza airean orekatzea.<br>4. Erorketa: hondarrean edo koltxonetan lur hartzea.</span>
+<span lang="es">1. Carrera: coger velocidad controlada.<br>2. Batida (impulso): empujar hacia arriba con un pie.<br>3. Vuelo: equilibrar el cuerpo en el aire.<br>4. Caída: aterrizar en la arena o en los colchones.</span></div>
+<div class="card"><b class="t"><span lang="eu">Jaurtiketa baten 4 faseak</span><span lang="es">Las 4 fases de un lanzamiento</span></b>
+<span lang="eu">1. Prestaketa: tresna ondo heldu eta kokatzea.<br>2. Lekualdaketa / bira: indarra sortzeko mugimendua.<br>3. Amaierako jaurtiketa: hanketatik besora indarra pasatzea.<br>4. Errekuperazioa: marra zapaldu gabe oreka mantentzea.</span>
+<span lang="es">1. Preparación: agarrar y colocar bien el instrumento.<br>2. Desplazamiento / giro: movimiento para generar fuerza.<br>3. Lanzamiento final: pasar la fuerza de las piernas al brazo.<br>4. Recuperación: mantener el equilibrio sin pisar la línea.</span></div>
+</div>
+
+<h3><span lang="eu">Osasuna eta materiala</span><span lang="es">Salud y material</span></h3>
+<div class="grid">
+<div class="card"><b class="t"><span lang="eu">4 oinarrizko gaitasunak</span><span lang="es">4 capacidades básicas</span></b><span lang="eu">Abiadura, erresistentzia, indarra eta malgutasuna.</span><span lang="es">Velocidad, resistencia, fuerza y flexibilidad.</span></div>
+<div class="card"><b class="t"><span lang="eu">Iltzedun oinetakoak</span><span lang="es">Zapatillas de clavos</span></b><span lang="eu">Tartanean (pistako zoruan) ez irristatzeko eta bultzada hobetzeko.</span><span lang="es">Para no resbalar en el tartán (suelo de la pista) y mejorar el impulso.</span></div>
+<div class="card"><b class="t"><span lang="eu">Beroketa</span><span lang="es">Calentamiento</span></b><span lang="eu">Giharrak prestatzeko eta lesioak saihesteko ezinbestekoa.</span><span lang="es">Imprescindible para preparar los músculos y evitar lesiones.</span></div>
+</div>
+</section>
+
+<section id="araudia">
+<h2><span lang="eu">Araudia: banderak, irteerak eta nuluak</span><span lang="es">Reglas: banderas, salidas y nulos</span></h2>
+<div class="grid">
+<div class="card"><b class="t"><span lang="eu">Bandera zuria</span><span lang="es">Bandera blanca</span></b><span lang="eu">Jauzia edo jaurtiketa baliozkoa dela adierazten du.</span><span lang="es">Indica que el salto o lanzamiento es válido.</span></div>
+<div class="card"><b class="t"><span lang="eu">Bandera gorria</span><span lang="es">Bandera roja</span></b><span lang="eu">Saioa nulua da (marra zapaltzeagatik edo eremutik kanpo).</span><span lang="es">El intento es nulo (por pisar la línea o caer fuera de la zona).</span></div>
+<div class="card"><b class="t">Foto-finish</b><span lang="eu">Atletaren enborrak (bularrak) helmuga gurutzatzean neurtzen da. Ez eskuak, ez burua, ez oinak.</span><span lang="es">Se mide cuando el tronco (el pecho) del atleta cruza la meta. No las manos, ni la cabeza, ni los pies.</span></div>
+<div class="card"><b class="t"><span lang="eu">Irteera faltsuak</span><span lang="es">Salidas falsas</span></b><span lang="eu">Bi irteera faltsu egiten dituen korrikalaria kanporatua da.</span><span lang="es">El corredor con dos salidas falsas queda eliminado.</span></div>
+</div>
+</section>
+
+<section id="zenbakiak">
+<h2><span lang="eu">Zenbakiak eta datak (buruz ikasi!)</span><span lang="es">Números y fechas (¡a memorizar!)</span></h2>
+<table>
+<tr><th><span lang="eu">Zenbakia / data</span><span lang="es">Número / fecha</span></th><th><span lang="eu">Zer da?</span><span lang="es">¿Qué es?</span></th></tr>
+<tr><td>K.a. 776</td><td><span lang="eu">Lehen Olinpiar Jokoak (Olinpia)</span><span lang="es">Primeros Juegos Olímpicos (Olimpia)</span></td></tr>
+<tr><td>192 m</td><td><span lang="eu">Stadion proba</span><span lang="es">Prueba del stadion</span></td></tr>
+<tr><td>K.a. 490</td><td><span lang="eu">Maratongo gudua</span><span lang="es">Batalla de Maratón</span></td></tr>
+<tr><td>40 km</td><td><span lang="eu">Filipidesen lasterketa</span><span lang="es">Carrera de Filípides</span></td></tr>
+<tr><td>1896</td><td><span lang="eu">Atenas: lehen Olinpiar Jokoak Aro Modernoan</span><span lang="es">Atenas: primeros Juegos de la Edad Moderna</span></td></tr>
+<tr><td>1908</td><td><span lang="eu">Londres: maratoia 42,195 km</span><span lang="es">Londres: maratón de 42,195 km</span></td></tr>
+<tr><td>2,195 km</td><td><span lang="eu">Errege-familiarengatik luzatutakoa</span><span lang="es">Lo que se alargó por la familia real</span></td></tr>
+<tr><td>1968</td><td><span lang="eu">Mexiko: Fosbury Flop</span><span lang="es">México: Fosbury Flop</span></td></tr>
+<tr><td>1984</td><td><span lang="eu">Xabalinaren aldaketa (104 m-tik gora)</span><span lang="es">Cambio de jabalina (más de 104 m)</span></td></tr>
+<tr><td>400 m / 8</td><td><span lang="eu">Pistaren bira / kale kopurua</span><span lang="es">Vuelta a la pista / número de calles</span></td></tr>
+<tr><td>30 m</td><td><span lang="eu">Lekukoa pasatzeko eremua</span><span lang="es">Zona de cambio del testigo</span></td></tr>
+<tr><td>10</td><td><span lang="eu">Hesi kopurua / dekatloiaren probak</span><span lang="es">Número de vallas / pruebas del decatlón</span></td></tr>
+<tr><td>7</td><td><span lang="eu">Heptatloiaren probak</span><span lang="es">Pruebas del heptatlón</span></td></tr>
+<tr><td>3</td><td><span lang="eu">Saiakera altuera bakoitzean / urrats hirukoitzean</span><span lang="es">Intentos por altura / fases del triple salto</span></td></tr>
+<tr><td>9,58 s</td><td><span lang="eu">Bolt, 100 m (44,72 km/h), Berlin 2009</span><span lang="es">Bolt, 100 m (44,72 km/h), Berlín 2009</span></td></tr>
+<tr><td>6,26 m / 8,95 m</td><td><span lang="eu">Pertika / luzera munduko errekorrak</span><span lang="es">Récords mundiales de pértiga / longitud</span></td></tr>
+<tr><td>7,26 kg · 4 kg</td><td><span lang="eu">Pisua eta mailua (gizonezkoak · emakumezkoak)</span><span lang="es">Peso y martillo (hombres · mujeres)</span></td></tr>
+<tr><td>2 kg · 1 kg</td><td><span lang="eu">Diskoa</span><span lang="es">Disco</span></td></tr>
+<tr><td>800 g · 600 g</td><td><span lang="eu">Xabalina</span><span lang="es">Jabalina</span></td></tr>
+</table>
+<h3><span lang="eu">Gogoratzeko trikimailuak</span><span lang="es">Trucos para recordar</span></h3>
+<div class="key"><span lang="eu">Pisua eta mailua pisu bera dute (7,26 / 4). Diskoa 2 / 1. Xabalina arinena: 800 g / 600 g.<br>"Foto-finish = enborra": inoiz ez esku, ez oin.<br>"Bandera zuria = ondo, gorria = nulua."<br>4 familia: <b>L</b>asterketak, <b>J</b>auziak, <b>J</b>aurtiketak, <b>K</b>onbinatuak.</span><span lang="es">Peso y martillo pesan igual (7,26 / 4). Disco 2 / 1. La jabalina es la más ligera: 800 g / 600 g.<br>"Foto-finish = tronco": nunca manos ni pies.<br>"Bandera blanca = bien, roja = nulo."<br>4 familias: carreras, saltos, lanzamientos, combinadas.</span></div>
+</section>
+
+<section id="txartelak">
+<h2><span lang="eu">Ikasketa-txartelak (sakatu eman buelta)</span><span lang="es">Tarjetas de estudio (pulsa para girar)</span></h2>
+<div class="grid" id="cards"></div>
+</section>
+
+<section id="galderak">
+<h2><span lang="eu">Galderak: probatu zeure burua</span><span lang="es">Preguntas: ponte a prueba</span></h2>
+<p><span lang="eu">Erantzun bat aukeratu eta ikusiko duzu zuzena den eta zergatik.</span><span lang="es">Elige una respuesta y verás si es correcta y por qué.</span></p>
+<div id="quiz"></div>
+<p><span id="score"></span> <button class="main" id="reset"><span lang="eu">Berriro hasi</span><span lang="es">Empezar de nuevo</span></button></p>
+</section>
+
+</main>
+<footer>Salesianos Barakaldo · Gorputz Hezkuntza · Atletismoa</footer>
+
+<script>
+const T=(eu,es)=>({eu,es});
+const CARDS=[
+[T("Zein dira kirolaren 3 oinarrizko balioak?","¿Cuáles son los 3 valores básicos del deporte?"),T("Errespetua, Lana eta Esfortzua.","Respeto, Trabajo y Esfuerzo.")],
+[T("Noiz izan ziren lehen Olinpiar Jokoak eta non?","¿Cuándo y dónde fueron los primeros Juegos Olímpicos?"),T("K.a. 776, Olinpian (Grezia).","776 a.C., en Olimpia (Grecia).")],
+[T("Zer zen stadion proba?","¿Qué era el stadion?"),T("192 metroko lasterketa, lehen proba bakarra.","Carrera de 192 m, la única prueba al principio.")],
+[T("Zein proba zituen pentatloi zaharrak?","¿Qué pruebas tenía el pentatlón antiguo?"),T("Lasterketa, luzera, diskoa, xabalina eta borroka.","Carrera, longitud, disco, jabalina y lucha.")],
+[T("Noiz itzuli ziren Olinpiar Jokoak Aro Modernoan?","¿Cuándo volvieron los Juegos en la Edad Moderna?"),T("1896an, Atenasen.","En 1896, en Atenas.")],
+[T("Zergatik 42,195 km maratoia?","¿Por qué el maratón mide 42,195 km?"),T("Londres 1908: errege-familiak gaztelutik irteera ikusteko 2,195 km luzatu zuten.","Londres 1908: se alargaron 2,195 km para que la familia real viera la salida desde el castillo.")],
+[T("Nor izan zen Filipides?","¿Quién fue Filípides?"),T("Mezularia: 40 km korrika Atenasera, \"Irabazi dugu!\" oihukatzeko.","El mensajero: corrió 40 km hasta Atenas para gritar \"¡Hemos ganado!\".")],
+[T("Zenbat metro ditu pistaren bira osoak?","¿Cuántos metros tiene una vuelta a la pista?"),T("400 metro.","400 metros.")],
+[T("Zenbat kale ditu pistak?","¿Cuántas calles tiene la pista?"),T("8 kale (karril).","8 calles (carriles).")],
+[T("Zein norabidetan egiten da korrika pistan?","¿En qué sentido se corre en la pista?"),T("Ezkerraldera biratuz (erlojuaren aurka).","Girando a la izquierda (contra el reloj).")],
+[T("Zer dago pistaren erdian?","¿Qué hay en el centro de la pista?"),T("Belargunea, jauziak eta jaurtiketak egiteko.","Césped, para saltos y lanzamientos.")],
+[T("Zein dira 4 proba-familiak?","¿Cuáles son las 4 familias de pruebas?"),T("Lasterketak, jauziak, jaurtiketak eta proba konbinatuak.","Carreras, saltos, lanzamientos y pruebas combinadas.")],
+[T("Zer dira abiadura-probak?","¿Cuáles son las pruebas de velocidad?"),T("100 m, 200 m eta 400 m (irteera-takoak derrigorrezkoak).","100 m, 200 m y 400 m (tacos de salida obligatorios).")],
+[T("Zein dira erdiko iraupeneko probak?","¿Cuáles son las pruebas de medio fondo?"),T("800 m eta 1.500 m.","800 m y 1.500 m.")],
+[T("Zein dira iraupeneko probak?","¿Cuáles son las pruebas de fondo?"),T("5.000 m, 10.000 m eta maratoia.","5.000 m, 10.000 m y maratón.")],
+[T("Zer da ibilketa atletikoaren araua?","¿Cuál es la regla de la marcha atlética?"),T("Beti oin bat lurrean eduki behar da.","Siempre hay que tener un pie en el suelo.")],
+[T("Zenbat hesi gainditu behar dira?","¿Cuántas vallas hay que superar?"),T("10. Hesia botatzeak ez dakar kanporaketarik (nahita ez bada).","10. Tirar una valla no descalifica (salvo a propósito).")],
+[T("Zein dira atletismoko talde-proba bakarrak?","¿Cuáles son las únicas pruebas por equipos?"),T("4×100 m eta 4×400 m erreleboak.","Los relevos 4×100 m y 4×400 m.")],
+[T("Non pasatu behar da lekukoa?","¿Dónde se debe pasar el testigo?"),T("30 metroko eremuan.","En la zona de 30 metros.")],
+[T("Zer egiten da 4×100 m-an lekukoarekin?","¿Qué se hace con el testigo en el 4×100 m?"),T("Begiratu gabe pasatzen da, abiadura ez galtzeko.","Se pasa sin mirar para no perder velocidad.")],
+[T("Zein dira 4 jauzi motak?","¿Cuáles son los 4 tipos de salto?"),T("Luzera, hirukoitza, altuera eta pertika.","Longitud, triple, altura y pértiga.")],
+[T("Zer neurtzen da luzera-jauzian?","¿Qué se mide en el salto de longitud?"),T("Hondarrean utzitako oinatzik hurbilena (taula zapaldu gabe).","La huella más cercana a la tabla en la arena (sin pisar la tabla).")],
+[T("Zeintzuk dira jauzi hirukoitzaren 3 urratsak?","¿Cuáles son las 3 fases del triple salto?"),T("Herrenka, pausoa eta jauzia.","Cojito, zancada y salto.")],
+[T("Zenbat saiakera daude altuera bakoitzean?","¿Cuántos intentos hay en cada altura?"),T("3.","3.")],
+[T("Nor da Dick Fosbury eta zer egin zuen?","¿Quién es Dick Fosbury y qué hizo?"),T("Mexiko 1968an bizkarrez jauzi egin eta urrea irabazi zuen (Fosbury Flop).","En México 1968 saltó de espaldas y ganó el oro (Fosbury Flop).")],
+[T("Zein da 100 m-ko munduko errekorra?","¿Cuál es el récord mundial de 100 m?"),T("Usain Bolt, 9,58 s (44,72 km/h), Berlin 2009.","Usain Bolt, 9,58 s (44,72 km/h), Berlín 2009.")],
+[T("Pisu-jaurtiketaren pisua eta teknika?","¿Peso y técnica del lanzamiento de peso?"),T("7,26 kg / 4 kg. Lepotik bultzatu.","7,26 kg / 4 kg. Se empuja desde el hombro.")],
+[T("Diskoaren pisua eta teknika?","¿Peso y técnica del disco?"),T("2 kg / 1 kg. Biraka kaiolan.","2 kg / 1 kg. Girando en la jaula.")],
+[T("Xabalinaren pisua eta teknika?","¿Peso y técnica de la jabalina?"),T("800 g / 600 g. Korrika egin eta bota.","800 g / 600 g. Se corre y se lanza.")],
+[T("Mailuaren pisua eta teknika?","¿Peso y técnica del martillo?"),T("7,26 kg / 4 kg. Kablez biratu kaiolan.","7,26 kg / 4 kg. Se gira con cable en la jaula.")],
+[T("Noiz aldatu zen xabalina eta zergatik?","¿Cuándo y por qué cambió la jabalina?"),T("1984an, 104 metrotik gora hegan egiten zuelako.","En 1984, porque volaba más de 104 metros.")],
+[T("Segurtasun-araua jaurtiketetan?","¿Norma de seguridad en lanzamientos?"),T("Inoiz ez sartu erorketa-eremuan seinalea jaso arte.","Nunca entrar en la zona de caída hasta recibir la señal.")],
+[T("Zer da dekatloia?","¿Qué es el decatlón?"),T("Gizonezkoen 10 probako erronka, bi egunekoa.","Reto de 10 pruebas masculino, en dos días.")],
+[T("Zer da heptatloia?","¿Qué es el heptatlón?"),T("Emakumezkoen 7 probako erronka, bi egunekoa.","Reto de 7 pruebas femenino, en dos días.")],
+[T("Zer titulu du dekatloiko irabazleak?","¿Qué título recibe el ganador del decatlón?"),T("\"Munduko Atleta Osoena\".","\"El atleta más completo del mundo\".")],
+[T("Zer adierazten du bandera zuriak?","¿Qué indica la bandera blanca?"),T("Jauzia edo jaurtiketa baliozkoa dela.","Que el salto o lanzamiento es válido.")],
+[T("Zer adierazten du bandera gorriak?","¿Qué indica la bandera roja?"),T("Saioa nulua dela (marra zapaltzea edo eremutik kanpo).","Que el intento es nulo (pisar la línea o fuera de la zona).")],
+[T("Zer neurtzen da foto-finishean?","¿Qué se mide en el foto-finish?"),T("Enborra (bularra) helmuga gurutzatzean.","El tronco (pecho) al cruzar la meta.")],
+[T("Zein da abiadura-lasterketaren 4 faseak?","¿Cuáles son las 4 fases de una carrera de velocidad?"),T("Irteera, azelerazioa, abiadura maximoa, helmuga.","Salida, aceleración, velocidad máxima, llegada.")],
+[T("Jauzi baten 4 faseak?","¿Las 4 fases de un salto?"),T("Lasterketa, batida, hegaldia, erorketa.","Carrera, batida, vuelo, caída.")],
+[T("Jaurtiketa baten 4 faseak?","¿Las 4 fases de un lanzamiento?"),T("Prestaketa, lekualdaketa/bira, amaierako jaurtiketa, errekuperazioa.","Preparación, desplazamiento/giro, lanzamiento final, recuperación.")],
+[T("Zein dira 4 oinarrizko gaitasun fisikoak?","¿Cuáles son las 4 capacidades físicas básicas?"),T("Abiadura, erresistentzia, indarra eta malgutasuna.","Velocidad, resistencia, fuerza y flexibilidad.")],
+[T("Zergatik erabiltzen dira iltzedun oinetakoak?","¿Por qué se usan zapatillas de clavos?"),T("Tartanean ez irristatzeko eta bultzada hobetzeko.","Para no resbalar en el tartán y mejorar el impulso.")],
+[T("Zergatik da garrantzitsua beroketa?","¿Por qué es importante el calentamiento?"),T("Giharrak prestatzeko eta lesioak saihesteko.","Para preparar los músculos y evitar lesiones.")]
+];
+
+const Q=[
+{q:T("Zein dira kirolaren 3 oinarrizko balioak?","¿Cuáles son los 3 valores básicos del deporte?"),o:[T("Errespetua, Lana, Esfortzua","Respeto, Trabajo, Esfuerzo"),T("Abiadura, Indarra, Malgutasuna","Velocidad, Fuerza, Flexibilidad"),T("Irabaztea, Dirua, Fama","Ganar, Dinero, Fama")],a:0,w:T("Salesianos estiloa pistan: Errespetua, Lana eta Esfortzua.","Estilo Salesianos en la pista: Respeto, Trabajo y Esfuerzo.")},
+{q:T("Noiz izan ziren lehen Olinpiar Jokoak?","¿Cuándo fueron los primeros Juegos Olímpicos?"),o:[T("K.a. 490","490 a.C."),T("K.a. 776","776 a.C."),T("1896")],a:1,w:T("K.a. 776, Olinpian. 1896 Aro Modernoko lehena da.","776 a.C., en Olimpia. 1896 es el primero de la Edad Moderna.")},
+{q:T("Zein izan zen lehen proba bakarra?","¿Cuál fue la única prueba al principio?"),o:[T("Maratoia","Maratón"),T("Xabalina","Jabalina"),T("Stadion (192 m)","Stadion (192 m)")],a:2,w:T("Stadion: 192 metroko lasterketa.","Stadion: carrera de 192 metros.")},
+{q:T("Zein proba zeuden pentatloi zaharrean?","¿Qué pruebas tenía el pentatlón antiguo?"),o:[T("Lasterketa, luzera, diskoa, xabalina, borroka","Carrera, longitud, disco, jabalina, lucha"),T("Pisua, mailua, pertika, altuera, hesiak","Peso, martillo, pértiga, altura, vallas"),T("100 m, 200 m, 400 m, 800 m, 1.500 m","100 m, 200 m, 400 m, 800 m, 1.500 m")],a:0,w:T("Borroka ere sartzen zen.","También incluía la lucha.")},
+{q:T("Noiz hasi zen Aro Modernoko lehen Olinpiar Jokoak, eta non?","¿Cuándo y dónde fueron los primeros Juegos de la Edad Moderna?"),o:[T("1896, Atenas","1896, Atenas"),T("1908, Londres","1908, Londres"),T("1968, Mexiko","1968, México")],a:0,w:T("1896an Atenasera itzuli ziren.","Volvieron en 1896 a Atenas.")},
+{q:T("Zergatik ditu maratoiak 42,195 km?","¿Por qué el maratón mide 42,195 km?"),o:[T("Filipidesek hainbeste korritu zuelako","Porque Filípides corrió esa distancia"),T("Londres 1908an errege-familiak gaztelutik irteera ikusteko luzatu zutelako","En Londres 1908 se alargó para que la familia real viera la salida desde el castillo"),T("Pistaren 100 bira direlako","Porque son 100 vueltas a la pista")],a:1,w:T("Filipidesek 40 km korritu zituen; 2,195 km 1908an gehitu ziren.","Filípides corrió 40 km; los 2,195 km se añadieron en 1908.")},
+{q:T("Zer oihukatu zuen Filipidesek Atenasen?","¿Qué gritó Filípides en Atenas?"),o:[T("\"Irabazi dugu!\"","\"¡Hemos ganado!\""),T("\"Prest!\"","\"¡Listos!\""),T("\"Aurrera!\"","\"¡Adelante!\"")],a:0,w:T("Greziarrek pertsiarrak garaitu zituzten Maraton-en.","Los griegos vencieron a los persas en Maratón.")},
+{q:T("Zenbat metro ditu pistaren bira osoak?","¿Cuántos metros tiene una vuelta a la pista?"),o:[T("200"),T("400"),T("800")],a:1,w:T("Aire zabaleko pistak 400 m ditu.","La pista al aire libre mide 400 m.")},
+{q:T("Zenbat kale ditu pistak?","¿Cuántas calles tiene la pista?"),o:[T("6"),T("8"),T("10")],a:1,w:T("8 kale (karril).","8 calles (carriles).")},
+{q:T("Zein norabidetan korritzen da pistan?","¿En qué sentido se corre en la pista?"),o:[T("Eskuinera","A la derecha"),T("Ezkerraldera (erlojuaren aurka)","A la izquierda (contra el reloj)"),T("Nahi duzunean","Como cada uno quiera")],a:1,w:T("Beti ezkerraldera biratuz.","Siempre girando a la izquierda.")},
+{q:T("Zein ez da atletismoko proba-familia bat?","¿Cuál NO es una familia de pruebas de atletismo?"),o:[T("Jauziak","Saltos"),T("Jaurtiketak","Lanzamientos"),T("Igeriketa","Natación")],a:2,w:T("Familiak: lasterketak, jauziak, jaurtiketak eta konbinatuak.","Las familias: carreras, saltos, lanzamientos y combinadas.")},
+{q:T("Zer da derrigorrezkoa abiadura-probetan?","¿Qué es obligatorio en las pruebas de velocidad?"),o:[T("Irteera-takoak","Tacos de salida"),T("Hesiak","Vallas"),T("Lekukoa","Testigo")],a:0,w:T("100, 200 eta 400 m-tan takoak erabiltzen dira.","En 100, 200 y 400 m se usan tacos.")},
+{q:T("Zein da ibilketa atletikoaren araua?","¿Cuál es la regla de la marcha atlética?"),o:[T("Beti oin bat lurrean","Siempre un pie en el suelo"),T("Lasterka egin daiteke","Se puede correr"),T("Bi eskuak lurrean","Las dos manos en el suelo")],a:0,w:T("Hegaldirik ez.","No puede haber fase de vuelo.")},
+{q:T("Hesi bat botatzeak zer dakar?","¿Qué pasa si se tira una valla?"),o:[T("Kanporaketa","Descalificación"),T("Ez dakar kanporaketarik (nahita ez bada)","No descalifica (salvo a propósito)"),T("Probaren amaiera","Fin de la carrera")],a:1,w:T("Hesiak ez dira finkoak; nahita botatzea bakarrik zigortzen da.","Las vallas no son fijas; solo se penaliza tirarlas a propósito.")},
+{q:T("Zein dira atletismoko talde-proba bakarrak?","¿Cuáles son las únicas pruebas por equipos?"),o:[T("4×100 m eta 4×400 m","4×100 m y 4×400 m"),T("Dekatloia eta heptatloia","Decatlón y heptatlón"),T("Maratoia","Maratón")],a:0,w:T("Erreleboak.","Los relevos.")},
+{q:T("Zenbat metroko eremuan pasatu behar da lekukoa?","¿En cuántos metros de zona se pasa el testigo?"),o:[T("10 m"),T("20 m"),T("30 m")],a:2,w:T("30 metroko eremua.","Zona de 30 metros.")},
+{q:T("Zer neurtzen da luzera-jauzian?","¿Qué se mide en el salto de longitud?"),o:[T("Oinatzik urrunena","La huella más lejana"),T("Oinatzik hurbilena taulatik","La huella más cercana a la tabla"),T("Jauzilariaren altuera","La altura del saltador")],a:1,w:T("Taula zapaldu gabe; hurbilena neurtzen da.","Sin pisar la tabla; se mide la más cercana.")},
+{q:T("Zeintzuk dira jauzi hirukoitzaren urratsak?","¿Cuáles son las fases del triple salto?"),o:[T("Herrenka, pausoa, jauzia","Cojito, zancada, salto"),T("Pausoa, pausoa, pausoa","Paso, paso, paso"),T("Lasterketa, batida, erorketa","Carrera, batida, caída")],a:0,w:T("Hiru urrats kateatu hondarrera.","Tres saltos encadenados a la arena.")},
+{q:T("Zenbat saiakera daude altuera bakoitzean?","¿Cuántos intentos hay por altura?"),o:[T("1"),T("2"),T("3")],a:2,w:T("3 aukera altuera bakoitzean.","3 oportunidades en cada altura.")},
+{q:T("Nork asmatu zuen bizkarrez jauzitzeko modua eta noiz?","¿Quién inventó el salto de espaldas y cuándo?"),o:[T("Usain Bolt, 2009","Usain Bolt, 2009"),T("Dick Fosbury, 1968","Dick Fosbury, 1968"),T("Filipides, K.a. 490","Filípides, 490 a.C.")],a:1,w:T("Mexiko 1968, urrea. Fosbury Flop.","México 1968, oro. Fosbury Flop.")},
+{q:T("Zein da 100 m-ko munduko errekorra?","¿Cuál es el récord mundial de 100 m?"),o:[T("9,58 s"),T("9,85 s"),T("10,58 s")],a:0,w:T("Usain Bolt, Berlin 2009, 44,72 km/h.","Usain Bolt, Berlín 2009, 44,72 km/h.")},
+{q:T("Zein tresnak pisatzen du 7,26 kg (gizonezkoak)? (Bi zuzen daude: aukeratu bat)","¿Qué instrumento pesa 7,26 kg (hombres)? (Hay dos válidas: elige una)"),o:[T("Diskoa","Disco"),T("Xabalina","Jabalina"),T("Pisua edo mailua","Peso o martillo")],a:2,w:T("Pisua eta mailua: 7,26 kg / 4 kg.","Peso y martillo: 7,26 kg / 4 kg.")},
+{q:T("Zein da xabalinaren pisua (M/E)?","¿Cuál es el peso de la jabalina (M/F)?"),o:[T("2 kg / 1 kg"),T("800 g / 600 g"),T("4 kg / 7,26 kg")],a:1,w:T("2 kg / 1 kg diskoarena da.","2 kg / 1 kg es el disco.")},
+{q:T("Zer lanzamendu egiten da biraka kaiolan, diskoa edo xabalina?","¿Qué se lanza girando en la jaula, disco o jabalina?"),o:[T("Diskoa","Disco"),T("Xabalina","Jabalina"),T("Biak","Los dos")],a:0,w:T("Xabalina korrika egin eta botatzen da.","La jabalina se lanza tras correr.")},
+{q:T("Zergatik aldatu zen xabalina 1984an?","¿Por qué cambió la jabalina en 1984?"),o:[T("Oso astuna zelako","Era muy pesada"),T("104 metrotik gora hegan egiten zuelako","Volaba más de 104 metros"),T("Apurtzen zelako","Se rompía")],a:1,w:T("Segurtasunagatik.","Por seguridad.")},
+{q:T("Noiz sar daiteke erorketa-eremuan jaurtiketetan?","¿Cuándo se puede entrar en la zona de caída en los lanzamientos?"),o:[T("Beti","Siempre"),T("Seinalea jaso ondoren bakarrik","Solo tras recibir la señal"),T("Inoiz ez","Nunca")],a:1,w:T("Segurtasun-araua.","Norma de seguridad.")},
+{q:T("Zenbat proba ditu dekatloiak?","¿Cuántas pruebas tiene el decatlón?"),o:[T("7"),T("10"),T("12")],a:1,w:T("Dekatloia 10, heptatloia 7.","Decatlón 10, heptatlón 7.")},
+{q:T("Zein proba konbinatu da emakumezkoena?","¿Qué prueba combinada es la femenina?"),o:[T("Dekatloia","Decatlón"),T("Heptatloia","Heptatlón"),T("Pentatloia","Pentatlón")],a:1,w:T("Heptatloia: 7 proba.","Heptatlón: 7 pruebas.")},
+{q:T("Zer titulu du dekatloiko irabazleak?","¿Qué título tiene el ganador del decatlón?"),o:[T("Munduko Atleta Osoena","El atleta más completo del mundo"),T("Kirolen Erregea","El rey de los deportes"),T("Olinpiar Handia","Gran Olímpico")],a:0,w:T("Kirolen erregea atletismoa da.","El rey de los deportes es el atletismo.")},
+{q:T("Zer esan nahi du bandera zuriak?","¿Qué significa la bandera blanca?"),o:[T("Saioa nulua","Intento nulo"),T("Saioa baliozkoa","Intento válido"),T("Kanporaketa","Descalificación")],a:1,w:T("Zuria = baliozkoa; gorria = nulua.","Blanca = válido; roja = nulo.")},
+{q:T("Zer esan nahi du bandera gorriak?","¿Qué significa la bandera roja?"),o:[T("Saioa nulua (marra zapaldu edo eremutik kanpo)","Intento nulo (pisar línea o fuera de zona)"),T("Garaipena","Victoria"),T("Beroketa","Calentamiento")],a:0,w:T("Gorria = nulua.","Roja = nulo.")},
+{q:T("Foto-finishean, zer neurtzen da?","En el foto-finish, ¿qué se mide?"),o:[T("Eskua","La mano"),T("Burua","La cabeza"),T("Enborra (bularra)","El tronco (pecho)")],a:2,w:T("Enborra helmuga gurutzatzean. Ez eskuak.","El tronco al cruzar la meta. No las manos.")},
+{q:T("Abiadura-lasterketaren 4 faseen ordena zuzena?","¿Orden correcto de las 4 fases de una carrera de velocidad?"),o:[T("Irteera, azelerazioa, abiadura maximoa, helmuga","Salida, aceleración, velocidad máxima, llegada"),T("Helmuga, irteera, azelerazioa, abiadura maximoa","Llegada, salida, aceleración, velocidad máxima"),T("Azelerazioa, irteera, helmuga, abiadura maximoa","Aceleración, salida, llegada, velocidad máxima")],a:0,w:T("Irteera, azelerazioa, abiadura maximoa, helmuga.","Salida, aceleración, velocidad máxima, llegada.")},
+{q:T("Zein da jauzi baten 3. fasea?","¿Cuál es la 3.ª fase de un salto?"),o:[T("Batida","Batida"),T("Hegaldia","Vuelo"),T("Erorketa","Caída")],a:1,w:T("Lasterketa, batida, hegaldia, erorketa.","Carrera, batida, vuelo, caída.")},
+{q:T("Zein da jaurtiketa baten azken fasea?","¿Cuál es la última fase de un lanzamiento?"),o:[T("Prestaketa","Preparación"),T("Errekuperazioa (oreka mantentzea)","Recuperación (mantener el equilibrio)"),T("Bira","Giro")],a:1,w:T("Marra zapaldu gabe.","Sin pisar la línea.")},
+{q:T("Zein da 4 oinarrizko gaitasunetako bat?","¿Cuál es una de las 4 capacidades básicas?"),o:[T("Malgutasuna","Flexibilidad"),T("Zaletasuna","Afición"),T("Zortea","Suerte")],a:0,w:T("Abiadura, erresistentzia, indarra, malgutasuna.","Velocidad, resistencia, fuerza, flexibilidad.")},
+{q:T("Zergatik erabiltzen dira iltzedun oinetakoak?","¿Por qué se usan zapatillas de clavos?"),o:[T("Politagoak direlako","Porque son más bonitas"),T("Tartanean ez irristatzeko eta bultzada hobetzeko","Para no resbalar en el tartán y mejorar el impulso"),T("Arinagoak direlako soilik","Solo porque pesan menos")],a:1,w:T("Tartana pistako zoruaren izena da.","Tartán es el nombre del suelo de la pista.")},
+{q:T("Egia ala gezurra: Maratoiak 42,195 km ditu Londres 1908tik.","Verdadero o falso: el maratón mide 42,195 km desde Londres 1908."),o:[T("Egia","Verdadero"),T("Gezurra","Falso")],a:0,w:T("Egia.","Verdadero.")},
+{q:T("Egia ala gezurra: Hesi bat botatzeak kanporaketa dakar.","Verdadero o falso: tirar una valla supone descalificación."),o:[T("Egia","Verdadero"),T("Gezurra","Falso")],a:1,w:T("Gezurra: ez, nahita ez bada.","Falso: no, salvo a propósito.")},
+{q:T("Egia ala gezurra: Bandera zuriak saioa baliozkoa dela dio.","Verdadero o falso: la bandera blanca indica intento válido."),o:[T("Egia","Verdadero"),T("Gezurra","Falso")],a:0,w:T("Egia.","Verdadero.")},
+{q:T("Egia ala gezurra: Eskuak markatzen du helmugako denbora.","Verdadero o falso: la mano marca el tiempo en la meta."),o:[T("Egia","Verdadero"),T("Gezurra","Falso")],a:1,w:T("Gezurra: enborrak (bularrak) markatzen du.","Falso: lo marca el tronco (el pecho).")}
+];
+
+const $=s=>document.querySelector(s);
+const LS={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+function two(t){return `<span lang="eu">${t.eu}</span><span lang="es">${t.es}</span>`}
+function tx(x){return typeof x==="string"?{eu:x,es:x}:x}
+document.body.dataset.lang=LS.get("lang")||"eu";
+function setLang(l){document.body.dataset.lang=l;LS.set("lang",l);document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===l))}
+document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>setLang(b.dataset.l));
+setLang(document.body.dataset.lang);
+
+$("#cards").innerHTML=CARDS.map(([f,b])=>`<div class="fc" onclick="this.classList.toggle('flip')"><button class="spk" data-say="card">🔊</button><div><div class="f">${two(f)}</div><div class="b">${two(b)}</div></div></div>`).join("");
+
+/* ---- Text to speech (Web Speech API) ---- */
+const SS=window.speechSynthesis;
+let VOICES=[];
+function loadVoices(){if(SS)VOICES=SS.getVoices()}
+if(SS){loadVoices();SS.onvoiceschanged=loadVoices}
+function pick(l){
+ const p=l==="eu"?["eu"]:["es-ES","es"];
+ for(const k of p){const v=VOICES.find(v=>v.lang.replace("_","-").toLowerCase().startsWith(k.toLowerCase()));if(v)return v}
+ return null;
+}
+function textFor(el,l){
+ const c=el.cloneNode(true);
+ c.querySelectorAll("button.spk,script,style").forEach(n=>n.remove());
+ c.querySelectorAll("[lang]").forEach(n=>{if(n.lang!==l)n.remove()});
+ c.querySelectorAll("td,th,li,p,div,h2,h3,br,tr").forEach(n=>n.append(document.createTextNode(". ")));
+ return c.textContent.replace(/\s+/g," ").replace(/(\.\s*){2,}/g,". ").replace(/\bK\.a\./g,"K a").trim();
+}
+function stopSpeech(){if(SS)SS.cancel()}
+function say(el){
+ if(!SS){alert("Zure nabigatzaileak ez du ahots-sintesirik / Tu navegador no tiene síntesis de voz");return}
+ stopSpeech();
+ const m=document.body.dataset.lang;
+ const langs=m==="both"?["eu","es"]:[m];
+ for(const l of langs){
+  const v=pick(l);
+  if(!v){if(l==="eu")$("#vnote").style.display="block";continue}
+  if(l==="eu")$("#vnote").style.display="none";
+  const t=textFor(el,l);
+  const parts=t.match(/[^.!?:;]+[.!?:;]?/g)||[];
+  let buf="";const chunks=[];
+  for(const s of parts){if((buf+s).length>180){if(buf)chunks.push(buf);buf=s}else buf+=s}
+  if(buf)chunks.push(buf);
+  for(const c of chunks){const u=new SpeechSynthesisUtterance(c);u.voice=v;u.lang=v.lang;u.rate=.95;SS.speak(u)}
+ }
+}
+$("#stop").onclick=stopSpeech;
+document.querySelectorAll("section h2").forEach(h=>{
+ const s=h.parentElement;if(s.id==="txartelak"||s.id==="galderak")return;
+ const b=document.createElement("button");b.className="spk";b.innerHTML="🔊 <span lang=\"eu\">Entzun</span><span lang=\"es\">Escuchar</span>";
+ b.onclick=()=>say(s);h.after(b);
+});
+document.addEventListener("click",e=>{
+ const b=e.target.closest("[data-say]");if(!b)return;
+ e.stopPropagation();
+ if(b.dataset.say==="card"){const fc=b.closest(".fc");say(fc.querySelector(fc.classList.contains("flip")?".b":".f"))}
+ else if(b.dataset.say==="q"){say(b.closest(".q"))}
+},true);
+window.addEventListener("pagehide",stopSpeech);
+
+let score=0,done=0;
+function upd(){$("#score").textContent=`${score} / ${Q.length}  (${done}/${Q.length})`}
+function build(){
+ score=0;done=0;
+ $("#quiz").innerHTML=Q.map((x,i)=>`<div class="q" data-i="${i}"><button class="spk" data-say="q">🔊</button><p>${i+1}. ${two(x.q)}</p>${x.o.map((o,j)=>`<button class="opt" data-j="${j}">${two(tx(o))}</button>`).join("")}<div class="why"></div></div>`).join("");
+ document.querySelectorAll(".q").forEach(el=>{
+  const x=Q[+el.dataset.i];
+  el.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+   const j=+b.dataset.j;
+   el.querySelectorAll(".opt").forEach(o=>o.disabled=true);
+   el.querySelectorAll(".opt")[x.a].classList.add("ok");
+   if(j===x.a)score++;else b.classList.add("ko");
+   done++;
+   el.querySelector(".why").innerHTML=(j===x.a?"✔ ":"✘ ")+two(x.w);
+   upd();
+  });
+ });
+ upd();
+}
+$("#reset").onclick=build;build();
+</script>
+</body>
+</html>
