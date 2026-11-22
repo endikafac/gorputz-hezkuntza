@@ -23,6 +23,7 @@
 <meta name="twitter:image" content="https://endikafac.github.io/gorputz-hezkuntza/atletismoa/og-image.jpg">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#0d6e5b">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -84,7 +85,11 @@ main>section.col>*:not(h2){display:none!important}
 .cl{font-style:normal;font-weight:700;color:var(--pri);background:var(--pri2);border-radius:6px;padding:0 6px;filter:blur(7px);cursor:pointer;transition:filter .2s}
 .cl.rev{filter:none}
 .vid .vf{position:relative;aspect-ratio:16/9;background:#000;border-radius:10px;overflow:hidden;cursor:pointer;margin-bottom:8px}
+.vid .vf iframe,.vid .vf>div{width:100%;height:100%;border:0;display:block}
 .vid .vf img,.vid .vf iframe{width:100%;height:100%;object-fit:cover;border:0;display:block}
+.vfb{display:block;position:relative;width:100%;height:100%;color:#fff;text-decoration:none}
+.vfb img{width:100%;height:100%;object-fit:cover;display:block}
+.vfb em{position:absolute;left:0;right:0;bottom:0;background:#000b;font-style:normal;font-weight:700;padding:10px;text-align:center}
 .vid .pl{position:absolute;inset:0;margin:auto;width:64px;height:64px;border-radius:50%;background:#e8590ccc;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.8rem;padding-left:5px}
 .vid .vf:hover .pl{background:#e8590c}
 #stats{margin-top:12px}
@@ -990,7 +995,11 @@ $("#clmix").onclick=()=>drawCl(shuf(allCl()));
 $("#cl10").onclick=()=>drawCl(shuf(allCl()).slice(0,10));
 $("#rnd10").onclick=()=>build(shuf(Q.map((_,i)=>i)).slice(0,10));
 $("#rnd20").onclick=()=>build(shuf(Q.map((_,i)=>i)).slice(0,20));
-document.addEventListener("click",e=>{const v=e.target.closest(".vf[data-v]");if(!v||v.querySelector("iframe"))return;stopSpeech();const id=v.dataset.v;v.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="video"></iframe>'});
+let ytP=null;
+function ytReady(){return ytP||(ytP=new Promise((res,rej)=>{if(window.YT&&YT.Player)return res();const t=document.createElement("script");t.src="https://www.youtube.com/iframe_api";t.onerror=()=>rej(new Error("load"));window.onYouTubeIframeAPIReady=res;document.head.append(t);setTimeout(()=>rej(new Error("timeout")),8000)}))}
+function vidFallback(v,id){v.dataset.on="1";v.innerHTML='<a class="vfb" href="https://www.youtube.com/watch?v='+id+'" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/'+id+'/hqdefault.jpg" alt=""><span class="pl">▶</span><em><span lang="eu">Ikusi YouTuben ↗</span><span lang="es">Ver en YouTube ↗</span></em></a>'}
+document.addEventListener("click",e=>{const v=e.target.closest(".vf[data-v]");if(!v||v.dataset.on)return;v.dataset.on="1";stopSpeech();const id=v.dataset.v;const box=document.createElement("div");v.innerHTML="";v.append(box);let ok=false;
+ ytReady().then(()=>{new YT.Player(box,{videoId:id,host:"https://www.youtube-nocookie.com",playerVars:{autoplay:1,rel:0,playsinline:1,modestbranding:1},events:{onReady:()=>{ok=true},onError:()=>vidFallback(v,id)}});setTimeout(()=>{if(!ok)vidFallback(v,id)},9000)}).catch(()=>vidFallback(v,id))});
 document.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches&&e.target.matches(".vf[data-v]")){e.preventDefault();e.target.click()}});
 /* progress panel + print */
 function refreshProg(){
