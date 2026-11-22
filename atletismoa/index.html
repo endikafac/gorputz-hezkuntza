@@ -443,7 +443,22 @@ function textFor(el,l){
  c.querySelectorAll("td,th,li,p,div,h2,h3,br,tr").forEach(n=>n.append(document.createTextNode(". ")));
  return c.textContent.replace(/\s+/g," ").replace(/(\.\s*){2,}/g,". ").replace(/\bK\.a\./g,"K a").trim();
 }
-function stopSpeech(){if(SS)SS.cancel()}
+let curAudio=null,playTok=0;
+function stopSpeech(){playTok++;if(curAudio){curAudio.pause();curAudio=null}if(SS)SS.cancel()}
+function playOne(src){return new Promise((res,rej)=>{const a=new Audio(src);curAudio=a;a.onended=()=>res();a.onerror=()=>rej(new Error("noaudio"));a.play().catch(rej)})}
+async function sayAudio(ids){
+ stopSpeech();const tok=++playTok;
+ const m=document.body.dataset.lang;const langs=m==="both"?["eu","es"]:[m];
+ for(const l of langs)for(const id of ids){
+  if(tok!==playTok)return true;
+  await playOne("audio/"+l+"/"+id+".mp3");
+ }
+ return true;
+}
+async function say(el,ids){
+ if(ids){try{await sayAudio(ids);return}catch(e){if(e&&e.name==="NotAllowedError"){}}}
+ return sayTTS(el);
+}
 function spoken(t,l){
  t=t.replace(/K a\s*(\d+)/g,l==="eu"?"Kristo aurretik $1":"$1 antes de Cristo");
  t=t.replace(/×/g,l==="eu"?" bider ":" por ");
@@ -457,7 +472,7 @@ function spoken(t,l){
  return t;
 }
 function getVoicesNow(){return new Promise(r=>{if(!SS)return r([]);let v=SS.getVoices();if(v.length)return r(v);let done=false;const f=()=>{if(done)return;done=true;r(SS.getVoices())};SS.onvoiceschanged=f;setTimeout(f,2000)})}
-async function say(el){
+async function sayTTS(el){
  if(!SS){alert("Zure nabigatzaileak ez du ahots-sintesirik / Tu navegador no tiene síntesis de voz");return}
  SS.cancel();
  VOICES=await getVoicesNow();
@@ -496,13 +511,14 @@ $("#vtest").onclick=async()=>{
 document.querySelectorAll("section h2").forEach(h=>{
  const s=h.parentElement;if(s.id==="txartelak"||s.id==="galderak")return;
  const b=document.createElement("button");b.className="spk";b.innerHTML="🔊 <span lang=\"eu\">Entzun</span><span lang=\"es\">Escuchar</span>";
- b.onclick=()=>say(s);h.after(b);
+ b.onclick=()=>say(s,["s-"+s.id]);h.after(b);
 });
 document.addEventListener("click",e=>{
  const b=e.target.closest("[data-say]");if(!b)return;
  e.stopPropagation();
- if(b.dataset.say==="card"){const fc=b.closest(".fc");say(fc.querySelector(fc.classList.contains("flip")?".b":".f"))}
- else if(b.dataset.say==="q"){say(b.closest(".q"))}
+ if(b.dataset.say==="card"){const fc=b.closest(".fc"),fl=fc.classList.contains("flip");say(fc.querySelector(fl?".b":".f"),["c"+fc.dataset.i+(fl?"b":"f")])}
+ else if(b.dataset.say==="e"){const q=b.closest(".q");say(q.querySelector(".why"),["e"+q.dataset.i])}
+ else if(b.dataset.say==="q"){const q=b.closest(".q");say(q,["q"+q.dataset.i])}
 },true);
 window.addEventListener("pagehide",stopSpeech);
 
@@ -523,7 +539,7 @@ function build(list){
    if(j===x.a){score++;w=w.filter(k=>k!==qi)}else{b.classList.add("ko");if(!w.includes(qi))w.push(qi)}
    J.set("wrong",w);
    done++;
-   el.querySelector(".why").innerHTML=(j===x.a?"✔ ":"✘ ")+two(x.w);
+   el.querySelector(".why").innerHTML=(j===x.a?"✔ ":"✘ ")+two(x.w)+' <button class="spk" data-say="e">🔊</button>';
    upd();
   });
  });
@@ -557,7 +573,7 @@ document.querySelectorAll(".plan input").forEach(c=>{c.checked=plan.includes(c.d
 pbar();
 $("#hidebtn").onclick=function(){$("#numtab").classList.toggle("hide");this.classList.toggle("on")};
 $("#numtab").addEventListener("click",e=>{const td=e.target.closest("td");if(td)td.classList.toggle("rev")});
-$("#listenall").onclick=()=>{const w=document.createElement("div");["#laburpena","#historia","#pista","#familiak","#teknika","#araudia"].forEach(id=>w.append(document.querySelector(id).cloneNode(true)));say(w)};
+$("#listenall").onclick=()=>{const w=document.createElement("div");["#laburpena","#historia","#pista","#familiak","#teknika","#araudia"].forEach(id=>w.append(document.querySelector(id).cloneNode(true)));say(w,["laburpena","historia","pista","familiak","teknika","araudia"].map(x=>"s-"+x))};
 </script>
 </body>
 </html>
