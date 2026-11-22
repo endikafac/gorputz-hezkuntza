@@ -41,6 +41,30 @@ html{font-size:18px}
 .fc>div{min-height:150px!important}
 .fc.hidec{display:none}
 .fc{position:relative}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tw table{min-width:520px}
+.bar{padding-top:max(8px,env(safe-area-inset-top))}
+@media (max-width:700px){
+ html{font-size:16px}
+ header{padding:14px 14px}header h1{font-size:1.25rem}
+ .bar{gap:6px;padding:6px 8px}
+ .bar nav{flex-wrap:nowrap;overflow-x:auto;flex:1 1 100%;order:3;padding-bottom:4px;scrollbar-width:none}
+ .bar nav::-webkit-scrollbar{display:none}
+ .bar nav a{white-space:nowrap;padding:8px 14px;font-size:.95rem}
+ .lang{margin-left:auto}
+ .lang button,.spk,.tools button,button.main{min-height:44px;padding-left:14px;padding-right:14px}
+ .spk{padding-top:8px;padding-bottom:8px}
+ .fc .spk{min-height:36px;padding:4px 12px}
+ .fc .mk button{min-height:36px;padding:2px 14px;font-size:1rem}
+ .fc>div{min-height:190px!important}
+ .fc .f,.fc .b{padding:14px 14px 48px}
+ .opt{padding:12px 14px;font-size:1rem}
+ h2{font-size:1.2rem}
+ th,td{padding:6px 8px;font-size:.95rem}
+ .tw table{min-width:460px}
+ .tl{padding-left:14px}
+ #score{bottom:10px}
+}
 </style><style>
 section{margin:28px 0}
 h2{font-size:1.35rem;margin:0 0 10px;border-left:6px solid var(--pri);padding-left:10px}
@@ -445,7 +469,8 @@ function textFor(el,l){
 }
 let curAudio=null,playTok=0;
 function stopSpeech(){playTok++;if(curAudio){curAudio.pause();curAudio=null}if(SS)SS.cancel()}
-function playOne(src){return new Promise((res,rej)=>{const a=new Audio(src);curAudio=a;a.onended=()=>res();a.onerror=()=>rej(new Error("noaudio"));a.play().catch(rej)})}
+const AUD=new Audio();AUD.preload="auto";
+function playOne(src){return new Promise((res,rej)=>{const a=AUD;curAudio=a;a.onended=()=>res();a.onerror=()=>rej(new Error("noaudio"));a.src=src;const p=a.play();if(p&&p.catch)p.catch(rej)})}
 async function sayAudio(ids){
  stopSpeech();const tok=++playTok;
  const m=document.body.dataset.lang;const langs=m==="both"?["eu","es"]:[m];
@@ -566,6 +591,7 @@ $("#cfilter").onclick=function(){onlyUnknown=!onlyUnknown;this.classList.toggle(
 $("#cshuffle").onclick=()=>{corder=shuf(corder);drawCards()};
 drawCards();
 
+document.querySelectorAll("main table").forEach(t=>{const w=document.createElement("div");w.className="tw";t.before(w);w.append(t)});
 /* plan, numbers table, listen all */
 const plan=J.get("plan",[]);
 function pbar(){$("#pbar").style.width=(100*document.querySelectorAll(".plan input:checked").length/5)+"%"}
