@@ -20,7 +20,27 @@ header p{margin:4px 0 0;opacity:.9}
 .lang button{border:1px solid var(--pri);background:transparent;color:var(--pri);padding:4px 12px;cursor:pointer;font-weight:700}
 .lang button:first-child{border-radius:99px 0 0 99px}.lang button:last-child{border-radius:0 99px 99px 0}
 .lang button.on{background:var(--pri);color:#fff}
-main{max-width:980px;margin:0 auto;padding:16px}
+main{max-width:none;width:100%;margin:0;padding:20px clamp(14px,3vw,48px)}
+html{font-size:18px}
+.grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))!important}
+.plan label{display:block;padding:6px 8px;border-radius:8px;cursor:pointer}
+.plan label:hover{background:var(--pri2)}
+.plan input{transform:scale(1.3);margin-right:10px}
+.prog{height:12px;background:var(--line);border-radius:99px;overflow:hidden;margin:8px 0}
+.prog>i{display:block;height:100%;background:var(--pri);width:0;transition:width .3s}
+.top10 li{margin:6px 0}
+.hide td:nth-child(2),.hide td:nth-child(3){filter:blur(7px);cursor:pointer;transition:filter .2s}
+.hide td.rev{filter:none}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.tools button{border:1px solid var(--pri);background:var(--card);color:var(--pri);border-radius:99px;padding:5px 14px;font:inherit;font-size:.9rem;cursor:pointer}
+.tools button.on{background:var(--pri);color:#fff}
+.fc.known .f{border-color:var(--ok);box-shadow:inset 0 0 0 2px var(--ok)}
+.fc .mk{position:absolute;bottom:6px;left:6px;z-index:2;display:flex;gap:6px}
+.fc .mk button{border:0;border-radius:99px;padding:1px 9px;cursor:pointer;font-size:.85rem}
+.fc .mk .y{background:var(--ok);color:#fff}.fc .mk .n{background:var(--ko);color:#fff}
+.fc>div{min-height:150px!important}
+.fc.hidec{display:none}
+.fc{position:relative}
 </style><style>
 section{margin:28px 0}
 h2{font-size:1.35rem;margin:0 0 10px;border-left:6px solid var(--pri);padding-left:10px}
@@ -73,6 +93,8 @@ footer{text-align:center;color:var(--mut);padding:24px 12px 60px;font-size:.9rem
 </header>
 <div class="bar">
 <nav>
+<a href="#plana"><span lang="eu">Plana</span><span lang="es">Plan</span></a>
+<a href="#top10">Top 10</a>
 <a href="#laburpena"><span lang="eu">Laburpena</span><span lang="es">Resumen</span></a>
 <a href="#historia"><span lang="eu">Historia</span><span lang="es">Historia</span></a>
 <a href="#pista"><span lang="eu">Pista</span><span lang="es">Pista</span></a>
@@ -87,7 +109,37 @@ footer{text-align:center;color:var(--mut);padding:24px 12px 60px;font-size:.9rem
 <div class="lang"><button data-l="eu" class="on">EU</button><button data-l="both">EU+ES</button><button data-l="es">ES</button></div>
 </div>
 <main>
-<div id="vnote"><span lang="eu">Zure nabigatzaileak ez dauka euskarazko ahotsik. Erabili Microsoft Edge (ordenagailuan) edo Chrome Android-en, euskaraz entzuteko.</span><span lang="es">Tu navegador no tiene voz en euskera. Usa Microsoft Edge (en ordenador) o Chrome en Android para oírlo en euskera.</span></div>
+<div id="vnote"><span lang="eu">Zure gailuak ez dauka euskarazko ahotsik: gaztelaniazko ahotsarekin irakurtzen da (ulergarria da, euskara fonetikoa baita). Euskarazko ahots ona nahi baduzu, erabili Microsoft Edge ordenagailuan edo Chrome Android-en.</span><span lang="es">Tu dispositivo no tiene voz en euskera: se lee con voz en castellano (se entiende, el euskera es fonético). Para voz buena en euskera usa Microsoft Edge en ordenador o Chrome en Android.</span></div>
+
+<section id="plana">
+<h2><span lang="eu">Ikasketa-plana: 5 pasadatan gainditu</span><span lang="es">Plan de estudio: aprobar en 5 pasadas</span></h2>
+<p><span lang="eu">Irakurri eta entzun behin eta berriz. Egunero pasada bat edo bi egin; azterketaren aurreko egunean, 5.a. Markatu egindakoa.</span><span lang="es">Lee y escucha una y otra vez. Haz una o dos pasadas al día; el día antes del examen, la 5.ª. Marca lo que hagas.</span></p>
+<div class="plan card">
+<label><input type="checkbox" data-p="1"><span lang="eu"><b>1. pasada:</b> irakurri Laburpena eta Top 10 ezinbestekoak, ozen. Entzun "Entzun dena".</span><span lang="es"><b>1.ª pasada:</b> lee el Resumen y el Top 10 en voz alta. Escucha "Escuchar todo".</span></label>
+<label><input type="checkbox" data-p="2"><span lang="eu"><b>2. pasada:</b> irakurri historia, pista eta 4 familiak (taulak). Erantzunak estali eta buruz esan.</span><span lang="es"><b>2.ª pasada:</b> lee historia, pista y las 4 familias (tablas). Tapa las respuestas y dilas de memoria.</span></label>
+<label><input type="checkbox" data-p="3"><span lang="eu"><b>3. pasada:</b> teknika, araudia eta zenbakiak. Zenbakien taula "ezkutatuta" ikasi.</span><span lang="es"><b>3.ª pasada:</b> técnica, reglas y números. Estudia la tabla de números "oculta".</span></label>
+<label><input type="checkbox" data-p="4"><span lang="eu"><b>4. pasada:</b> txartelak: "Banekien" / "Ez" markatu. Errepikatu ez dakizkizunak.</span><span lang="es"><b>4.ª pasada:</b> tarjetas: marca "Lo sabía" / "No". Repite las que no sabes.</span></label>
+<label><input type="checkbox" data-p="5"><span lang="eu"><b>5. pasada:</b> testa. Huts egindakoak bakarrik errepikatu, %90 lortu arte.</span><span lang="es"><b>5.ª pasada:</b> test. Repite solo los fallos hasta llegar al 90 %.</span></label>
+<div class="prog"><i id="pbar"></i></div>
+<div class="tools"><button id="listenall">🔊 <span lang="eu">Entzun dena</span><span lang="es">Escuchar todo</span></button></div>
+</div>
+</section>
+
+<section id="top10">
+<h2><span lang="eu">Top 10: azterketan ia segurua</span><span lang="es">Top 10: casi seguro en el examen</span></h2>
+<ol class="top10 card">
+<li><span lang="eu"><b>3 balio:</b> Errespetua, Lana, Esfortzua.</span><span lang="es"><b>3 valores:</b> Respeto, Trabajo, Esfuerzo.</span></li>
+<li><span lang="eu"><b>Maratoia:</b> 42,195 km (Londres 1908, errege-familia). Filipides: 40 km, Maraton, K.a. 490.</span><span lang="es"><b>Maratón:</b> 42,195 km (Londres 1908, familia real). Filípides: 40 km, Maratón, 490 a.C.</span></li>
+<li><span lang="eu"><b>Lehen Olinpiar Jokoak:</b> K.a. 776, Olinpia. Modernoak: 1896, Atenas.</span><span lang="es"><b>Primeros Juegos Olímpicos:</b> 776 a.C., Olimpia. Modernos: 1896, Atenas.</span></li>
+<li><span lang="eu"><b>Pista:</b> 400 m, 8 kale, ezkerraldera, erdian belargunea.</span><span lang="es"><b>Pista:</b> 400 m, 8 calles, a la izquierda, césped en el centro.</span></li>
+<li><span lang="eu"><b>4 familia:</b> lasterketak, jauziak, jaurtiketak, konbinatuak.</span><span lang="es"><b>4 familias:</b> carreras, saltos, lanzamientos, combinadas.</span></li>
+<li><span lang="eu"><b>Hesiak:</b> 10 hesi; botatzeak ez dakar kanporaketarik. <b>Erreleboak:</b> 4×100 eta 4×400, lekukoa 30 m-ko eremuan.</span><span lang="es"><b>Vallas:</b> 10 vallas; tirarlas no descalifica. <b>Relevos:</b> 4×100 y 4×400, testigo en zona de 30 m.</span></li>
+<li><span lang="eu"><b>4 jauzi:</b> luzera, hirukoitza (herrenka-pausoa-jauzia), altuera (3 saiakera), pertika.</span><span lang="es"><b>4 saltos:</b> longitud, triple (cojito-zancada-salto), altura (3 intentos), pértiga.</span></li>
+<li><span lang="eu"><b>Tresnak (M/E):</b> pisua 7,26/4 kg, diskoa 2/1 kg, xabalina 800/600 g, mailua 7,26/4 kg.</span><span lang="es"><b>Instrumentos (M/F):</b> peso 7,26/4 kg, disco 2/1 kg, jabalina 800/600 g, martillo 7,26/4 kg.</span></li>
+<li><span lang="eu"><b>Dekatloia</b> 10 proba (gizonak), <b>heptatloia</b> 7 (emakumeak). Banderak: zuria = baliozkoa, gorria = nulua. Foto-finish = enborra.</span><span lang="es"><b>Decatlón</b> 10 pruebas (hombres), <b>heptatlón</b> 7 (mujeres). Banderas: blanca = válido, roja = nulo. Foto-finish = tronco.</span></li>
+<li><span lang="eu"><b>Bitxikeriak:</b> Fosbury (1968, bizkarrez), Bolt (9,58 s), xabalina aldatu 1984an, bi irteera faltsu = kanporatua.</span><span lang="es"><b>Curiosidades:</b> Fosbury (1968, de espaldas), Bolt (9,58 s), jabalina cambiada en 1984, dos salidas falsas = eliminado.</span></li>
+</ol>
+</section>
 
 <section id="laburpena">
 <h2><span lang="eu">Laburpena: 1 minutuan</span><span lang="es">Resumen: en 1 minuto</span></h2>
@@ -227,7 +279,8 @@ footer{text-align:center;color:var(--mut);padding:24px 12px 60px;font-size:.9rem
 
 <section id="zenbakiak">
 <h2><span lang="eu">Zenbakiak eta datak (buruz ikasi!)</span><span lang="es">Números y fechas (¡a memorizar!)</span></h2>
-<table>
+<div class="tools"><button id="hidebtn"><span lang="eu">Ezkutatu erantzunak (entrenatzeko)</span><span lang="es">Ocultar respuestas (para entrenar)</span></button></div>
+<table id="numtab">
 <tr><th><span lang="eu">Zenbakia / data</span><span lang="es">Número / fecha</span></th><th><span lang="eu">Zer da?</span><span lang="es">¿Qué es?</span></th></tr>
 <tr><td>K.a. 776</td><td><span lang="eu">Lehen Olinpiar Jokoak (Olinpia)</span><span lang="es">Primeros Juegos Olímpicos (Olimpia)</span></td></tr>
 <tr><td>192 m</td><td><span lang="eu">Stadion proba</span><span lang="es">Prueba del stadion</span></td></tr>
@@ -255,6 +308,7 @@ footer{text-align:center;color:var(--mut);padding:24px 12px 60px;font-size:.9rem
 
 <section id="txartelak">
 <h2><span lang="eu">Ikasketa-txartelak (sakatu eman buelta)</span><span lang="es">Tarjetas de estudio (pulsa para girar)</span></h2>
+<div class="tools"><button id="cfilter"><span lang="eu">Ez dakizkidanak bakarrik</span><span lang="es">Solo las que no sé</span></button><button id="cshuffle"><span lang="eu">Nahastu</span><span lang="es">Mezclar</span></button><span id="cstat"></span></div>
 <div class="grid" id="cards"></div>
 </section>
 
@@ -262,7 +316,8 @@ footer{text-align:center;color:var(--mut);padding:24px 12px 60px;font-size:.9rem
 <h2><span lang="eu">Galderak: probatu zeure burua</span><span lang="es">Preguntas: ponte a prueba</span></h2>
 <p><span lang="eu">Erantzun bat aukeratu eta ikusiko duzu zuzena den eta zergatik.</span><span lang="es">Elige una respuesta y verás si es correcta y por qué.</span></p>
 <div id="quiz"></div>
-<p><span id="score"></span> <button class="main" id="reset"><span lang="eu">Berriro hasi</span><span lang="es">Empezar de nuevo</span></button></p>
+<div class="tools"><button class="main" id="reset"><span lang="eu">Berriro hasi (nahastuta)</span><span lang="es">Empezar de nuevo (mezclado)</span></button><button class="main" id="redo"><span lang="eu">Huts egindakoak bakarrik</span><span lang="es">Solo los fallos</span></button></div>
+<p><span id="score"></span></p>
 </section>
 
 </main>
@@ -370,7 +425,6 @@ function setLang(l){document.body.dataset.lang=l;LS.set("lang",l);document.query
 document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>setLang(b.dataset.l));
 setLang(document.body.dataset.lang);
 
-$("#cards").innerHTML=CARDS.map(([f,b])=>`<div class="fc" onclick="this.classList.toggle('flip')"><button class="spk" data-say="card">🔊</button><div><div class="f">${two(f)}</div><div class="b">${two(b)}</div></div></div>`).join("");
 
 /* ---- Text to speech (Web Speech API) ---- */
 const SS=window.speechSynthesis;
@@ -390,22 +444,43 @@ function textFor(el,l){
  return c.textContent.replace(/\s+/g," ").replace(/(\.\s*){2,}/g,". ").replace(/\bK\.a\./g,"K a").trim();
 }
 function stopSpeech(){if(SS)SS.cancel()}
-function say(el){
+function spoken(t,l){
+ t=t.replace(/K a\s*(\d+)/g,l==="eu"?"Kristo aurretik $1":"$1 antes de Cristo");
+ t=t.replace(/×/g,l==="eu"?" bider ":" por ");
+ t=t.replace(/(\d) ?km\/h/g,l==="eu"?"$1 kilometro orduko":"$1 kilómetros por hora");
+ t=t.replace(/(\d) ?km\b/g,l==="eu"?"$1 kilometro":"$1 kilómetros");
+ t=t.replace(/(\d) ?kg\b/g,l==="eu"?"$1 kilo":"$1 kilos");
+ t=t.replace(/(\d) ?g\b/g,l==="eu"?"$1 gramo":"$1 gramos");
+ t=t.replace(/(\d) ?m-ko/g,"$1 metroko");
+ t=t.replace(/(\d) ?m\b/g,l==="eu"?"$1 metro":"$1 metros");
+ t=t.replace(/(\d) ?s\b/g,l==="eu"?"$1 segundo":"$1 segundos");
+ return t;
+}
+function getVoicesNow(){return new Promise(r=>{if(!SS)return r([]);let v=SS.getVoices();if(v.length)return r(v);let done=false;const f=()=>{if(done)return;done=true;r(SS.getVoices())};SS.onvoiceschanged=f;setTimeout(f,2000)})}
+async function say(el){
  if(!SS){alert("Zure nabigatzaileak ez du ahots-sintesirik / Tu navegador no tiene síntesis de voz");return}
- stopSpeech();
+ SS.cancel();
+ VOICES=await getVoicesNow();
+ if(!VOICES.length){$("#vnote").style.display="block";$("#vnote").textContent="Ez da ahotsik aurkitu / No se encontraron voces. Probatu Edge edo Chrome.";return}
  const m=document.body.dataset.lang;
  const langs=m==="both"?["eu","es"]:[m];
+ let fallback=false;
+ const queue=[];
  for(const l of langs){
-  const v=pick(l);
-  if(!v){if(l==="eu")$("#vnote").style.display="block";continue}
-  if(l==="eu")$("#vnote").style.display="none";
-  const t=textFor(el,l);
+  let v=pick(l);
+  if(!v&&l==="eu"){v=pick("es");fallback=true}
+  if(!v)continue;
+  const t=spoken(textFor(el,l),l);
   const parts=t.match(/[^.!?:;]+[.!?:;]?/g)||[];
   let buf="";const chunks=[];
-  for(const s of parts){if((buf+s).length>180){if(buf)chunks.push(buf);buf=s}else buf+=s}
+  for(const s of parts){if((buf+s).length>160){if(buf)chunks.push(buf);buf=s}else buf+=s}
   if(buf)chunks.push(buf);
-  for(const c of chunks){const u=new SpeechSynthesisUtterance(c);u.voice=v;u.lang=v.lang;u.rate=.95;SS.speak(u)}
+  for(const c of chunks)queue.push([c,v]);
  }
+ $("#vnote").style.display=fallback?"block":"none";
+ setTimeout(()=>{
+  for(const [c,v] of queue){const u=new SpeechSynthesisUtterance(c);u.voice=v;u.lang=v.lang;u.rate=.95;u.onerror=e=>{if(e.error&&e.error!=="canceled"&&e.error!=="interrupted"){$("#vnote").style.display="block";$("#vnote").textContent="Audio errorea / Error de audio: "+e.error}};SS.speak(u)}
+ },150);
 }
 $("#stop").onclick=stopSpeech;
 document.querySelectorAll("section h2").forEach(h=>{
@@ -421,18 +496,22 @@ document.addEventListener("click",e=>{
 },true);
 window.addEventListener("pagehide",stopSpeech);
 
-let score=0,done=0;
-function upd(){$("#score").textContent=`${score} / ${Q.length}  (${done}/${Q.length})`}
-function build(){
- score=0;done=0;
- $("#quiz").innerHTML=Q.map((x,i)=>`<div class="q" data-i="${i}"><button class="spk" data-say="q">🔊</button><p>${i+1}. ${two(x.q)}</p>${x.o.map((o,j)=>`<button class="opt" data-j="${j}">${two(tx(o))}</button>`).join("")}<div class="why"></div></div>`).join("");
+const J={get(k,d){try{return JSON.parse(LS.get(k))||d}catch(e){return d}},set(k,v){LS.set(k,JSON.stringify(v))}};
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+let score=0,done=0,cur=[];
+function upd(){$("#score").textContent=`${score} / ${cur.length}  (${done}/${cur.length})`+(done===cur.length&&cur.length?"  "+Math.round(100*score/cur.length)+"%":"")}
+function build(list){
+ cur=list||shuf(Q.map((_,i)=>i));score=0;done=0;
+ $("#quiz").innerHTML=cur.map((qi,n)=>{const x=Q[qi];return `<div class="q" data-i="${qi}"><button class="spk" data-say="q">🔊</button><p>${n+1}. ${two(x.q)}</p>${x.o.map((o,j)=>`<button class="opt" data-j="${j}">${two(tx(o))}</button>`).join("")}<div class="why"></div></div>`}).join("");
  document.querySelectorAll(".q").forEach(el=>{
-  const x=Q[+el.dataset.i];
+  const qi=+el.dataset.i,x=Q[qi];
   el.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
    const j=+b.dataset.j;
    el.querySelectorAll(".opt").forEach(o=>o.disabled=true);
    el.querySelectorAll(".opt")[x.a].classList.add("ok");
-   if(j===x.a)score++;else b.classList.add("ko");
+   let w=J.get("wrong",[]);
+   if(j===x.a){score++;w=w.filter(k=>k!==qi)}else{b.classList.add("ko");if(!w.includes(qi))w.push(qi)}
+   J.set("wrong",w);
    done++;
    el.querySelector(".why").innerHTML=(j===x.a?"✔ ":"✘ ")+two(x.w);
    upd();
@@ -440,7 +519,35 @@ function build(){
  });
  upd();
 }
-$("#reset").onclick=build;build();
+$("#reset").onclick=()=>build();
+$("#redo").onclick=()=>{const w=J.get("wrong",[]);if(!w.length){alert("Ez daukazu hutsegiterik / No tienes fallos guardados");return}build(shuf(w))};
+build();
+
+/* cards: known tracking */
+let known=J.get("known",[]),onlyUnknown=false,corder=CARDS.map((_,i)=>i);
+function drawCards(){
+ $("#cards").innerHTML=corder.map(i=>{const [f,b]=CARDS[i];const k=known.includes(i);return `<div class="fc${k?" known":""}${onlyUnknown&&k?" hidec":""}" data-i="${i}" onclick="this.classList.toggle('flip')"><button class="spk" data-say="card">🔊</button><div><div class="f">${two(f)}</div><div class="b">${two(b)}</div></div><span class="mk"><button class="y" data-k="1">✔</button><button class="n" data-k="0">✘</button></span></div>`}).join("");
+ $("#cstat").textContent=known.length+" / "+CARDS.length+" ✔";
+}
+document.addEventListener("click",e=>{
+ const b=e.target.closest("[data-k]");if(!b)return;e.stopPropagation();
+ const fc=b.closest(".fc"),i=+fc.dataset.i;known=known.filter(k=>k!==i);if(b.dataset.k==="1")known.push(i);
+ J.set("known",known);fc.classList.toggle("known",b.dataset.k==="1");
+ if(onlyUnknown&&b.dataset.k==="1")fc.classList.add("hidec");
+ $("#cstat").textContent=known.length+" / "+CARDS.length+" ✔";
+},true);
+$("#cfilter").onclick=function(){onlyUnknown=!onlyUnknown;this.classList.toggle("on",onlyUnknown);drawCards()};
+$("#cshuffle").onclick=()=>{corder=shuf(corder);drawCards()};
+drawCards();
+
+/* plan, numbers table, listen all */
+const plan=J.get("plan",[]);
+function pbar(){$("#pbar").style.width=(100*document.querySelectorAll(".plan input:checked").length/5)+"%"}
+document.querySelectorAll(".plan input").forEach(c=>{c.checked=plan.includes(c.dataset.p);c.onchange=()=>{J.set("plan",[...document.querySelectorAll(".plan input:checked")].map(x=>x.dataset.p));pbar()}});
+pbar();
+$("#hidebtn").onclick=function(){$("#numtab").classList.toggle("hide");this.classList.toggle("on")};
+$("#numtab").addEventListener("click",e=>{const td=e.target.closest("td");if(td)td.classList.toggle("rev")});
+$("#listenall").onclick=()=>{const w=document.createElement("div");["#laburpena","#historia","#pista","#familiak","#teknika","#araudia"].forEach(id=>w.append(document.querySelector(id).cloneNode(true)));say(w)};
 </script>
 </body>
 </html>
