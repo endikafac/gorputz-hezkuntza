@@ -4,6 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Atletismoa: ikasgida</title>
+<meta name="description" content="Eskemak, txartelak, galderak eta audioa euskaraz eta gaztelaniaz. Esquemas, tarjetas, preguntas y audio en euskera y castellano.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gorputz Hezkuntza">
+<meta property="og:title" content="🏃 Atletismoa: ikasgida">
+<meta property="og:description" content="Eskemak, txartelak, galderak eta audioa euskaraz eta gaztelaniaz. Esquemas, tarjetas, preguntas y audio en euskera y castellano.">
+<meta property="og:url" content="https://endikafac.github.io/gorputz-hezkuntza/atletismoa/">
+<meta property="og:image" content="https://endikafac.github.io/gorputz-hezkuntza/atletismoa/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Atletismoa: ikasgida. Pista, korrikalaria eta Salesianos Barakaldo">
+<meta property="og:locale" content="eu_ES">
+<meta property="og:locale:alternate" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="🏃 Atletismoa: ikasgida">
+<meta name="twitter:description" content="Eskemak, txartelak, galderak eta audioa euskaraz eta gaztelaniaz. Esquemas, tarjetas, preguntas y audio en euskera y castellano.">
+<meta name="twitter:image" content="https://endikafac.github.io/gorputz-hezkuntza/atletismoa/og-image.jpg">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#0d6e5b">
 <meta name="mobile-web-app-capable" content="yes">
@@ -12,7 +29,6 @@
 <meta name="apple-mobile-web-app-title" content="Atletismoa">
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
-<meta name="description" content="Atletismoa: Errespetua, Lana eta Esfortzua. Ikasgida / Guía de estudio.">
 <style>
 :root{--bg:#f6f8fb;--card:#fff;--ink:#17202e;--mut:#5a6678;--pri:#0d6e5b;--pri2:#e3f4ef;--acc:#e8590c;--acc2:#fff1e6;--line:#dde3ec;--ok:#1b8a3a;--ko:#c92a2a}
 @media (prefers-color-scheme:dark){:root{--bg:#10151d;--card:#18202b;--ink:#e8edf4;--mut:#9aa7b8;--pri:#3ecfae;--pri2:#16312c;--acc:#ff9a52;--acc2:#33241a;--line:#2a3544;--ok:#51cf66;--ko:#ff6b6b}}
@@ -71,6 +87,12 @@ main>section.col>*:not(h2){display:none!important}
 .vid .vf img,.vid .vf iframe{width:100%;height:100%;object-fit:cover;border:0;display:block}
 .vid .pl{position:absolute;inset:0;margin:auto;width:64px;height:64px;border-radius:50%;background:#e8590ccc;color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.8rem;padding-left:5px}
 .vid .vf:hover .pl{background:#e8590c}
+#stats{margin-top:12px}
+#stats .sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-top:6px}
+#stats .sg>div{background:var(--pri2);border-radius:12px;padding:8px 10px;text-align:center}
+#stats .sg b{display:block;font-size:1.5rem;color:var(--pri)}
+#stats .sg span{font-size:.8rem;color:var(--mut)}
+@media print{#txartelak,#galderak,#hutsuneak,#bideoak,#plana,.bar,#tabs,.tools,.next,.spk,footer{display:none!important}main{padding:0}body{font-size:12px}h2{break-after:avoid}table,.card{break-inside:avoid}}
 .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tw table{min-width:520px}
 .bar{padding-top:max(8px,env(safe-area-inset-top))}
@@ -819,7 +841,7 @@ const J={get(k,d){try{return JSON.parse(LS.get(k))||d}catch(e){return d}},set(k,
 const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 const ordr=x=>x.o.length>2?shuf([...x.o.keys()]):[...x.o.keys()];
 let score=0,done=0,cur=[];
-function upd(){$("#score").textContent=`${score} / ${cur.length}  (${done}/${cur.length})`+(done===cur.length&&cur.length?"  "+Math.round(100*score/cur.length)+"%  "+(score/cur.length>=.9?"🏆 Bikain! / ¡Genial!":score/cur.length>=.7?"👍 Oso ondo / Muy bien":"💪 Errepikatu / Repite"):"")}
+function upd(){setTimeout(()=>{if(done===cur.length&&cur.length){const p=Math.round(100*score/cur.length),st=J.get("qstat",{});st.last=p;st.best=Math.max(st.best||0,p);st.n=(st.n||0)+1;J.set("qstat",st);refreshProg()}},0);$("#score").textContent=`${score} / ${cur.length}  (${done}/${cur.length})`+(done===cur.length&&cur.length?"  "+Math.round(100*score/cur.length)+"%  "+(score/cur.length>=.9?"🏆 Bikain! / ¡Genial!":score/cur.length>=.7?"👍 Oso ondo / Muy bien":"💪 Errepikatu / Repite"):"")}
 function build(list){
  cur=list||shuf(Q.map((_,i)=>i));score=0;done=0;
  $("#quiz").innerHTML=cur.map((qi,n)=>{const x=Q[qi];return `<div class="q" data-i="${qi}"><button class="spk" data-say="q">🔊</button><p>${n+1}. ${two(x.q)}</p>${ordr(x).map(j=>`<button class="opt" data-j="${j}">${two(tx(x.o[j]))}</button>`).join("")}<div class="why"></div></div>`}).join("");
@@ -852,7 +874,7 @@ function drawCards(){
 document.addEventListener("click",e=>{
  const b=e.target.closest("[data-k]");if(!b)return;e.stopPropagation();
  const fc=b.closest(".fc"),i=+fc.dataset.i;known=known.filter(k=>k!==i);if(b.dataset.k==="1")known.push(i);
- J.set("known",known);fc.classList.toggle("known",b.dataset.k==="1");
+ J.set("known",known);refreshProg();fc.classList.toggle("known",b.dataset.k==="1");
  if(onlyUnknown&&b.dataset.k==="1")fc.classList.add("hidec");
  $("#cstat").textContent=known.length+" / "+CARDS.length+" ✔";
 },true);
@@ -864,7 +886,7 @@ document.querySelectorAll("main table").forEach(t=>{const w=document.createEleme
 /* plan, numbers table, listen all */
 const plan=J.get("plan",[]);
 function pbar(){$("#pbar").style.width=(100*document.querySelectorAll(".plan input:checked").length/5)+"%"}
-document.querySelectorAll(".plan input").forEach(c=>{c.checked=plan.includes(c.dataset.p);c.onchange=()=>{J.set("plan",[...document.querySelectorAll(".plan input:checked")].map(x=>x.dataset.p));pbar()}});
+document.querySelectorAll(".plan input").forEach(c=>{c.checked=plan.includes(c.dataset.p);c.onchange=()=>{J.set("plan",[...document.querySelectorAll(".plan input:checked")].map(x=>x.dataset.p));pbar();refreshProg()}});
 pbar();
 /* sections: open one by one */
 const SECS=[...document.querySelectorAll("main>section")];
@@ -970,6 +992,21 @@ $("#rnd10").onclick=()=>build(shuf(Q.map((_,i)=>i)).slice(0,10));
 $("#rnd20").onclick=()=>build(shuf(Q.map((_,i)=>i)).slice(0,20));
 document.addEventListener("click",e=>{const v=e.target.closest(".vf[data-v]");if(!v||v.querySelector("iframe"))return;stopSpeech();const id=v.dataset.v;v.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1&playsinline=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="video"></iframe>'});
 document.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches&&e.target.matches(".vf[data-v]")){e.preventDefault();e.target.click()}});
+/* progress panel + print */
+function refreshProg(){
+ const st=J.get("qstat",{}),kn=J.get("known",[]).length,wr=J.get("wrong",[]).length,pl=J.get("plan",[]).length;
+ const el=document.getElementById("stats");if(!el)return;
+ el.innerHTML='<b class="t"><span lang="eu">Zure aurrerapena</span><span lang="es">Tu progreso</span></b>'+
+ '<div class="sg">'+
+ '<div><b>'+pl+'/5</b><span lang="eu">pasada</span><span lang="es">pasadas</span></div>'+
+ '<div><b>'+kn+'/'+CARDS.length+'</b><span lang="eu">txartel ezagun</span><span lang="es">tarjetas sabidas</span></div>'+
+ '<div><b>'+(st.last==null?"-":st.last+"%")+'</b><span lang="eu">azken testa</span><span lang="es">último test</span></div>'+
+ '<div><b>'+(st.best==null?"-":st.best+"%")+'</b><span lang="eu">onena</span><span lang="es">mejor nota</span></div>'+
+ '<div><b>'+wr+'</b><span lang="eu">huts gelditzen dira</span><span lang="es">fallos pendientes</span></div>'+
+ '</div>';
+}
+{const d=document.createElement("div");d.id="stats";d.className="card";document.querySelector("#plana .plan").after(d);refreshProg();
+ const pb=document.createElement("button");pb.innerHTML='🖨 <span lang="eu">Inprimatu laburpena</span><span lang="es">Imprimir resumen</span>';pb.onclick=()=>{SECS.forEach(x=>x.classList.remove("col"));setTimeout(()=>print(),250)};document.querySelector("#plana .tools").append(pb)}
 $("#hidebtn").onclick=function(){$("#numtab").classList.toggle("hide");this.classList.toggle("on")};
 $("#numtab").addEventListener("click",e=>{const td=e.target.closest("td");if(td)td.classList.toggle("rev")});
 $("#listenall").onclick=()=>{const w=document.createElement("div");["#laburpena","#historia","#pista","#familiak","#eskemak","#teknika","#araudia"].forEach(id=>w.append(document.querySelector(id).cloneNode(true)));say(w,["laburpena","historia","pista","familiak","eskemak","teknika","araudia"].map(x=>"s-"+x))};
