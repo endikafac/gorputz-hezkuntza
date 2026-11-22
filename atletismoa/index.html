@@ -64,6 +64,11 @@ html{font-size:18px}
  .tw table{min-width:460px}
  .tl{padding-left:14px}
  #score{bottom:10px}
+ .bar{gap:4px 6px;padding:4px 8px}
+ .bar .spk,.bar .lang button{min-height:32px;padding:2px 11px;font-size:.82rem;margin:0}
+ .bar nav{flex:1 1 100%;gap:4px;padding-bottom:2px}
+ .bar nav a{padding:4px 12px;font-size:.85rem}
+ .bar.hide nav{display:none}
 }
 </style><style>
 section{margin:28px 0}
@@ -523,6 +528,7 @@ async function sayTTS(el){
  },150);
 }
 $("#stop").onclick=stopSpeech;
+(()=>{let y=0;const bar=document.querySelector(".bar");addEventListener("scroll",()=>{const c=scrollY;if(c>y+6&&c>140)bar.classList.add("hide");else if(c<y-6||c<140)bar.classList.remove("hide");y=c},{passive:true})})();
 $("#vtest").onclick=async()=>{
  if(!SS){alert("Zure nabigatzaileak ez du ahots-sintesirik / Tu navegador no tiene síntesis de voz");return}
  SS.cancel();VOICES=await getVoicesNow();
